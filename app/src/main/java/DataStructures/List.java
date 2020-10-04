@@ -2,23 +2,32 @@ package DataStructures;
 
 public abstract class List<T> {
 
-    abstract void insert(T value);
+    public abstract void insert(T value);
 
-    abstract void delete(T value);
+    public abstract void insertFirst(T value);
 
-    abstract T getK(Integer index);
+    public abstract void insertIndex(int index, T value);
 
-    abstract T getFirst();
+    public abstract void delete(T value);
 
-    abstract void insertIndex(Integer index, T value);
+    public abstract void deleteFirst();
 
-    abstract void insertFirst(T element);
+    public abstract void deleteLast();
 
-    abstract void deleteFirst();
+    public abstract void deleteIndex(int index);
 
-    abstract boolean isEmpty();
+    public abstract void makeEmpty();
 
-    abstract Integer length();
+    public abstract T getFirst();
 
-    abstract Integer getIndex(T value);
+    public abstract T getLast();
+
+    public abstract T getK(int index);
+
+    public abstract int getIndex(T value);
+
+    public abstract boolean isEmpty();
+
+    public abstract Integer length();
+
 }
