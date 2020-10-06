@@ -1,6 +1,12 @@
 package PsicObj;
 
+import DataStructures.Queue;
+
 public class Psico extends User implements Comparable<Psico> {
+    String ProfesionalCard;
+    String Speciality;
+    String University;
+    Queue<PsicoDate> pending;
 
     public Psico(String nombre, String usuario, String contraseña) {
         super(nombre, usuario, contraseña);
@@ -13,5 +19,9 @@ public class Psico extends User implements Comparable<Psico> {
         //devuelve <0, entonces la cadena que llama al método es primero lexicográficamente
         //devuelve == 0 entonces las dos cadenas son lexicográficamente equivalentes
         //devuelve> 0, entonces el parámetro pasado al método compareTo es lexicográficamente el primero.
+    }
+
+    public void attendtoHelp(){
+
     }
 }
