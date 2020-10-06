@@ -16,27 +16,27 @@ public class Stack<T> {
     private Integer length;
 
     public Stack() {
-        top = null;
-        length = 0;
+        this.top = null;
+        this.length = 0;
     }
 
-    public int getLength() {
-        return length;
+    public int length() {
+        return this.length;
     }
 
     public void push(T value) {
-        length++;
-        Node<T> newNode = new Node<T>(value);
-        newNode.next = top;
-        top = newNode;
+        Node<T> newNode = new Node<>(value);
+        newNode.next = this.top;
+        this.top = newNode;
+        this.length++;
     }
 
     public T pop() {
         if (length != 0) {
-            Node<T> node = top;
+            Node<T> topNode = this.top;
             top = top.next;
             length--;
-            return node.value;
+            return topNode.value;
         } else {
             System.out.println("Pila vacía, no se pueden retirar elementos");
             return null;
@@ -52,16 +52,28 @@ public class Stack<T> {
         }
     }
 
+    public boolean isEmpty() {
+        return this.length == 0;
+    }
+
+    public void makeEmpty() {
+        this.top = null;
+        this.length = 0;
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("[");
-        Node<T> aux = top;
-        while (aux.next != null) {
-            sb.append(aux.value + ", ");
-            aux = aux.next;
+        sb.append("top>> ");
+        if (this.length != 0) {
+            Node<T> aux = this.top;
+            while (aux.next != null) {
+                sb.append(aux.value + ", ");
+                aux = aux.next;
+            }
+            sb.append(aux.value);
         }
-        sb.append(aux.value);
-        sb.append("]");
+        sb.append(" <<floor");
         return sb.toString();
     }
 }
