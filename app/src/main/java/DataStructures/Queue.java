@@ -17,60 +17,70 @@ public class Queue<T> {
     private Integer length;
 
     public Queue() {
-        front = null;
-        back = null;
-        length = 0;
+        this.front = null;
+        this.back = null;
+        this.length = 0;
+    }
+
+    public int length() {
+        return this.length;
     }
 
     public void enqueue(T value) {
-        length++;
         if (length != 0) {
-            Node<T> node = new Node<>(value);
-            back.next = node;
-            back = node;
+            Node<T> newNode = new Node<>(value);
+            this.back.next = newNode;
+            this.back = newNode;
         } else {
-            front = back = new Node<>(value);
+            this.front = this.back = new Node<>(value);
         }
-    }
-
-    public T peek() {
-        if (length != 0) {
-            return front.value;
-        } else {
-            System.out.println("Lista vacía, no se puede ver ningún elemento");
-            return null;
-        }
+        this.length++;
     }
 
     public T dequeue() {
         if (length != 0) {
-            Node<T> node = front;
-            front = front.next;
-            length--;
-            return node.value;
+            Node<T> firstNode = this.front;
+            this.front = front.next;
+            this.length--;
+            return firstNode.value;
         } else {
             System.out.println("Lista vacía, no se puede eliminar ningún elemento");
             return null;
         }
     }
 
+    public T peek() {
+        if (length != 0) {
+            return this.front.value;
+        } else {
+            System.out.println("Lista vacía, no se puede ver ningún elemento");
+            return null;
+        }
+    }
+
+    public boolean isEmpty() {
+        return this.length == 0;
+    }
+
+    public void makeEmpty(){
+        this.length = 0;
+        this.front = null;
+        this.back = null;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("[");
-        Node<T> aux = this.front;
-        if (front == null) {
-
-
-        } else {
+        sb.append("front>> ");
+        if (this.length != 0) {
+            Node<T> aux = this.front;
             while (aux.next != null) {
                 sb.append(aux.value + ", ");
                 aux = aux.next;
             }
             sb.append(aux.value);
-
         }
-        sb.append("]");
+        sb.append(" <<back");
         return sb.toString();
     }
 }
