@@ -1,6 +1,6 @@
 package DataStructures;
 
-public class SimplyLinkedList<T> extends List<T> {
+public class SimplyLinkedList<T extends Comparable> extends List<T> {
     // TODO Añadir documentación
     private static class Node<T> {
         T value;
