@@ -1,5 +1,7 @@
 package PsicObj;
 
+import androidx.annotation.Nullable;
+
 import DataStructures.Queue;
 
 public class Psico extends User implements Comparable<Psico> {
@@ -23,5 +25,26 @@ public class Psico extends User implements Comparable<Psico> {
 
     public void attendtoHelp(){
 
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Psico{");
+        sb.append("nombre='").append(nombre).append('\'');
+        sb.append(", usuario='").append(usuario).append('\'');
+        sb.append(", contraseña='").append(contraseña).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        User otroPsico = (Psico) obj;
+
+        if(this.usuario.equals(otroPsico.usuario) && this.contraseña.equals(otroPsico.contraseña)){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

@@ -1,6 +1,6 @@
 package DataStructures;
 
-public class DoublyLinkedList<T extends Comparable> extends List<T> {
+public class    DoublyLinkedList<T extends Comparable> extends List<T> {
     // TODO Añadir documentación
     private static class Node<T> {
         T value;
@@ -205,7 +205,7 @@ public class DoublyLinkedList<T extends Comparable> extends List<T> {
         }
         Node<T> aux = this.first;
         int index = 0;
-        while (aux.value != value) {
+        while (aux.value.equals(value)) {
             if (aux.next == null) {
                 System.out.println("El elemento no hace parte de la lista");
                 return -1;
