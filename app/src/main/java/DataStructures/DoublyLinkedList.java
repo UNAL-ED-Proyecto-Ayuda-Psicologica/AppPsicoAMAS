@@ -1,6 +1,6 @@
 package DataStructures;
 
-public class DoublyLinkedList<T extends Comparable> extends List<T> {
+public class    DoublyLinkedList<T extends Comparable> extends List<T> {
     // TODO Añadir documentación
     private static class Node<T> {
         T value;
@@ -71,12 +71,11 @@ public class DoublyLinkedList<T extends Comparable> extends List<T> {
             Node<T> aux = this.first;
             for (int i = 0; i < index; i++) {
                 if (i == (index - 1)) {
-                    Node<T> auxNext = aux.next;
                     Node<T> newNode = new Node<>(value);
-                    newNode.next = auxNext;
+                    newNode.next = aux.next;
                     newNode.prev = aux;
                     aux.next = newNode;
-                    auxNext.prev = newNode;
+                    newNode.next.prev = newNode;
                     this.length++;
                 } else {
                     aux = aux.next;
@@ -205,7 +204,7 @@ public class DoublyLinkedList<T extends Comparable> extends List<T> {
         }
         Node<T> aux = this.first;
         int index = 0;
-        while (aux.value != value) {
+        while (!aux.value.equals(value)) {
             if (aux.next == null) {
                 System.out.println("El elemento no hace parte de la lista");
                 return -1;
