@@ -1,6 +1,6 @@
 package DataStructures;
 
-public class SimplyLinkedList<T extends Comparable> extends List<T> {
+public class SimplyLinkedList<T> extends List<T> {
     // TODO Añadir documentación
     private static class Node<T> {
         T value;
@@ -62,9 +62,8 @@ public class SimplyLinkedList<T extends Comparable> extends List<T> {
             Node<T> aux = this.first;
             for (int i = 0; i < index; i++) {
                 if (i == (index - 1)) {
-                    Node<T> auxNext = aux.next;
                     Node<T> newNode = new Node<>(value);
-                    newNode.next = auxNext;
+                    newNode.next = aux.next;
                     aux.next = newNode;
                     this.length++;
                 } else {

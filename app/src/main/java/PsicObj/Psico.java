@@ -23,6 +23,7 @@ public class Psico extends User implements Comparable<Psico> {
         //devuelve> 0, entonces el parámetro pasado al método compareTo es lexicográficamente el primero.
     }
 
+
     public void attendtoHelp(){
 
     }

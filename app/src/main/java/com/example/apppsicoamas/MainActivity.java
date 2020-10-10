@@ -35,32 +35,21 @@ public class MainActivity extends AppCompatActivity {
         ingresar = findViewById(R.id.bIngresar);
         bienvenida = findViewById(R.id.tvBienvenida);
         nuevoRegistro = findViewById(R.id.bNuevoRegistro);
+    }
 
-        ingresar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String entradaUsuario = usuario.getText().toString();
-                String entradaContraseña = contraseña.getText().toString();
+    public void ingresar(View view){
+        String entradaUsuario = usuario.getText().toString();
+        String entradaContraseña = contraseña.getText().toString();
 
-                if (entradaUsuario.isEmpty() || entradaContraseña.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Por favor digita usuario y contraseña", Toast.LENGTH_SHORT).show();
-                } else {
-                    if (validarUsuario(entradaUsuario, entradaContraseña)) {
-                        Toast.makeText(MainActivity.this, "las dos sabemos que esto no está funcionando realmente", Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(MainActivity.this, "Usuario o contraseña incorrectos", Toast.LENGTH_LONG).show();
-                    }
-                }
+        if (entradaUsuario.isEmpty() || entradaContraseña.isEmpty()) {
+            Toast.makeText(MainActivity.this, "Por favor digita usuario y contraseña", Toast.LENGTH_SHORT).show();
+        } else {
+            if (validarUsuario(entradaUsuario, entradaContraseña)) {
+                Toast.makeText(MainActivity.this, "Iniciaste Sesión", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(MainActivity.this, "Usuario o contraseña incorrectos", Toast.LENGTH_LONG).show();
             }
-        });
-
-        nuevoRegistro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, RegistrationActivity.class));
-            }
-        });
-
+        }
     }
 
     public boolean validarUsuario(String usuario, String contraseña) {
@@ -68,10 +57,8 @@ public class MainActivity extends AppCompatActivity {
         Psico usuarioEntrante = new Psico("nombre génerico", usuario, contraseña);
         int index = DataBase.listadeusuarios.getIndex(usuarioEntrante);
 
-        if (index >= 0 ) {
-            if(DataBase.listadeusuarios.getK(index).equals(usuarioEntrante)){
-                return true;
-            }
+        if (index >= 0 /*&& DataBase.listadeusuarios.getK(index).equals(usuarioEntrante)*/) {
+            return true;
         } else {
             return false;
         }
@@ -86,5 +73,9 @@ public class MainActivity extends AppCompatActivity {
         //Fin formato
 
         //System.out.println("Hola mundo");
+    }
+
+    public void registrarse(View view){
+        startActivity(new Intent(MainActivity.this, RegistrationActivity.class));
     }
 }

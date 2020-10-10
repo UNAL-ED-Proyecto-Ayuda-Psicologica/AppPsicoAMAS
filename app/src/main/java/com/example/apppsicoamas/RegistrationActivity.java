@@ -27,22 +27,19 @@ public class RegistrationActivity extends AppCompatActivity {
         nuevaContraseña = findViewById(R.id.etRegContraseña);
         registrarse = findViewById(R.id.bRegistrarse);
 
-        registrarse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String usuario = nuevoUsuario.getText().toString();
-                String contraseña = nuevaContraseña.getText().toString();
+    }
 
-                if(validar(usuario, contraseña)){
-                    DataBase.agregarUsuario(new Psico("nombre génerico", usuario, contraseña));
-                    Toast.makeText(RegistrationActivity.this, "Te acabas de registrar!",Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    System.out.println(DataBase.listadeusuarios.toString());
-                }
-            }
-        });
+    public void nuevoRegistro(View view){
+        String usuario = nuevoUsuario.getText().toString();
+        String contraseña = nuevaContraseña.getText().toString();
 
+        if(validar(usuario, contraseña)){
+            DataBase.agregarUsuario(new Psico("nombre génerico", usuario, contraseña));
+            Toast.makeText(RegistrationActivity.this, "Te acabas de registrar!",Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
+            startActivity(intent);
+            System.out.println(DataBase.listadeusuarios.toString());
+        }
     }
 
     private boolean validar(String usuario, String contraseña){
