@@ -5,10 +5,12 @@ import PsicObj.Psico;
 import PsicObj.User;
 
 public class DataBase {
-    public static DoublyLinkedList<Psico> listadeusuarios = new DoublyLinkedList<>();
+    public static DoublyLinkedList<User> listadeusuarios = new DoublyLinkedList<>();
+    public static DoublyLinkedList<String> listanombredeusuarios = new DoublyLinkedList<>();
 
-    public static void agregarUsuario(Psico psico){
-        listadeusuarios.insert(psico);
+    public static void agregarUsuario(User user){
+        listadeusuarios.insert(user);
+        listanombredeusuarios.insert(user.getUsuario());
     }
 
 }
