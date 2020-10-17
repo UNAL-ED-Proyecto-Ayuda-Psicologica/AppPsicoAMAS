@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import Pruebas.DataBase;
+import PsicObj.NoPsico;
 import PsicObj.Psico;
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -17,6 +19,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText nuevoUsuario;
     private EditText nuevaContraseña;
     private Button registrarse;
+    private CheckBox soyPsicologo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,7 @@ public class RegistrationActivity extends AppCompatActivity {
         nuevoUsuario = findViewById(R.id.etRegUsuario);
         nuevaContraseña = findViewById(R.id.etRegContraseña);
         registrarse = findViewById(R.id.bRegistrarse);
+        soyPsicologo = findViewById(R.id.cbPsicologo);
 
     }
 
@@ -34,19 +38,27 @@ public class RegistrationActivity extends AppCompatActivity {
         String contraseña = nuevaContraseña.getText().toString();
 
         if(validar(usuario, contraseña)){
-            DataBase.agregarUsuario(new Psico("nombre génerico", usuario, contraseña));
+            if(soyPsicologo.isChecked()){
+                DataBase.agregarUsuario(new Psico("nombre génerico", usuario, contraseña));
+            }
+            else{
+                DataBase.agregarUsuario(new NoPsico("nombre génerico", usuario, contraseña));
+            }
+
             Toast.makeText(RegistrationActivity.this, "Te acabas de registrar!",Toast.LENGTH_LONG).show();
             Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
             startActivity(intent);
-            System.out.println(DataBase.listadeusuarios.toString());
         }
     }
 
     private boolean validar(String usuario, String contraseña){
-        if(usuario.isEmpty() || contraseña.length() < 5){
+        if(usuario.isEmpty() || contraseña.length() < 8){
             Toast.makeText(RegistrationActivity.this, "Ingresa una contraseña más larga",Toast.LENGTH_LONG).show();
             return false;
-        } else {
+        } else if(DataBase.listanombredeusuarios.getIndex(usuario) >= 0 ){
+            Toast.makeText(RegistrationActivity.this, "Este nombre de usuario está ocupado, ingresa uno distinto!",Toast.LENGTH_LONG).show();
+            return false;
+        } else{
             return true;
         }
     }

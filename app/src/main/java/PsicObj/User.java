@@ -6,20 +6,24 @@ import java.util.Date;
 
 import DataStructures.List;
 
-public class User {
-    String nombre;
-    String usuario;
-    String contraseña;
-    String correo;
-    int edad;
-    int telefono;
-    List<Publication> posts;
-    List<PsicoDate> dates;
+public abstract class User implements Comparable<User>{
+    protected String nombre;
+    protected String usuario;
+    protected String contraseña;
+    protected String correo;
+    protected int edad;
+    protected int telefono;
+    public List<Publication> posts;
+    public List<PsicoDate> dates;
 
     public User(String nombre, String usuario, String contraseña) {
         this.nombre = nombre;
         this.usuario = usuario;
         this.contraseña = contraseña;
+    }
+
+    public String getUsuario(){
+        return this.usuario;
     }
 
     public Publication writePost(String content, Date date) {
@@ -57,6 +61,19 @@ public class User {
     public Publication unupPost(Publication post) {
         post.removeUp();
         return post;
+    }
+
+    //public abstract int compareTo(Psico o);
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        User otroUser = (User) obj;
+
+        if(this.usuario.equals(otroUser.usuario) && this.contraseña.equals(otroUser.contraseña)){
+            return true;
+        } else{
+            return false;
+        }
     }
 
 
