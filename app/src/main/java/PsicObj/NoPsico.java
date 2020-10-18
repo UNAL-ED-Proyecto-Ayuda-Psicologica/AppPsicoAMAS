@@ -38,4 +38,8 @@ public class NoPsico extends User{
     public int compareTo(User o) {
         return (this.usuario.compareTo(o.usuario)+this.contraseña.compareTo(o.contraseña));
     }
+
+    public void solvePanic() {
+        this.panic=null;
+    }
 }
