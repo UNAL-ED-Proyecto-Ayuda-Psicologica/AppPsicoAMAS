@@ -62,19 +62,18 @@ public class MainActivity extends AppCompatActivity {
         if (entradaUsuario.isEmpty() || entradaContraseña.isEmpty()) {
             Toast.makeText(MainActivity.this, "Por favor digita usuario y contraseña", Toast.LENGTH_SHORT).show();
         } else {
+            long fin = System.nanoTime();
             switch (validarUsuario(entradaUsuario,entradaContraseña)) {
                 case 1:
-                    long fin = System.nanoTime();
+
                     Toast.makeText(MainActivity.this, "Iniciaste Sesión " + ((fin - inicio) * 1.0e-9), Toast.LENGTH_LONG).show();
                     startActivity(new Intent(MainActivity.this, OnSessionActivityN.class));
                     break;
                 case 2:
-                    long fin = System.nanoTime();
                     Toast.makeText(MainActivity.this, "Iniciaste Sesión " + ((fin - inicio) * 1.0e-9), Toast.LENGTH_LONG).show();
                     startActivity(new Intent(MainActivity.this, OnSessionActivityP.class));
                     break;
                 default:
-                    long fin = System.nanoTime();
                     System.out.println(((fin - inicio) * 1.0e-9));
                     Toast.makeText(MainActivity.this, "Usuario o contraseña incorrectos "+ ((fin - inicio) * 1.0e-9), Toast.LENGTH_LONG).show();
                     break;
