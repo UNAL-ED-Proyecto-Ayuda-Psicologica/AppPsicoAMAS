@@ -2,6 +2,8 @@ package PsicObj;
 
 import java.util.Date;
 
+import DataStructures.Queue;
+
 public class NoPsico extends User{
     String ClinicStory;
 
@@ -14,8 +16,8 @@ public class NoPsico extends User{
 
     }
 
-    public void PanicButton(){
-
+    public void PanicButton(Queue<Panic> panicQueue, String situation){
+        panicQueue.enqueue(new Panic(this, situation));
     }
 
     public void askforDate(Psico doctor, Date date){
