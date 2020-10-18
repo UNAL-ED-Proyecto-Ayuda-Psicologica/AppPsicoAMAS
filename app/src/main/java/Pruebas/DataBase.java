@@ -1,6 +1,7 @@
 package Pruebas;
 
 import DataStructures.DoublyLinkedList;
+import DataStructures.DynamicArray;
 import DataStructures.Queue;
 import DataStructures.Stack;
 import PsicObj.*;
@@ -9,13 +10,14 @@ public class DataBase {
     public static DoublyLinkedList<User> listadeusuarios = new DoublyLinkedList<>();
     public static DoublyLinkedList<String> listanombredeusuarios = new DoublyLinkedList<>();
     public static Queue<Panic> botonesDePanico = new Queue<>();
-    public static Stack<Publication> posts = new Stack<>();
-    public static Stack<Publication> auxPosts = new Stack<>();
+    public static DynamicArray<Publication> posts = new DynamicArray<>();
+    //public static Stack<Publication> auxPosts = new Stack<>();
 
     public static void agregarUsuario(User user){
         listadeusuarios.insert(user);
         listanombredeusuarios.insert(user.getUsuario());
     }
+    /*
     public static void updateAll(){
         updatePostsStacks();
     }
@@ -31,5 +33,5 @@ public class DataBase {
             post.getComments().push(post.getAuxcomments().pop());
         }
     }
-
+*/
 }

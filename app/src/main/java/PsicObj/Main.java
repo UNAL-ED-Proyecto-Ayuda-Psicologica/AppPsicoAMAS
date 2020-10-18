@@ -10,14 +10,14 @@ public class Main {
 
 
         if(tipo==0){
-            Psico objUsuario = new Psico("Pepito","pepito1","pepito12");
+            Psico objUsuario = new Psico("Pepito","pepito1","pepito12",null);
             if(objLogin.logIn(objUsuario)==true){
                 System.out.println("Iniciaste Sesion");
             }else{
                 System.err.println("Usuario o contraseña incorrecto");
             }
         }else{
-            NoPsico objUsuario = new NoPsico(null, "Juanit", "12345");
+            NoPsico objUsuario = new NoPsico(null, "Juanit", "12345",null);
             if(objLogin.logIn(objUsuario)==true){
                 System.out.println("Iniciaste Sesion");
             }else{

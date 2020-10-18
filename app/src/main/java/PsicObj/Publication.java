@@ -3,6 +3,7 @@ package PsicObj;
 import java.util.Date;
 
 
+import DataStructures.DynamicArray;
 import DataStructures.Stack;
 
 public class Publication {
@@ -10,16 +11,14 @@ public class Publication {
     int nUps;
     User user;
     Date publishDate;
-    Stack<Publication> comments;
-    Stack<Publication> auxcomments;
+    DynamicArray<Publication> comments;
 
     public Publication(String content, User user, Date publishDate) {
         this.content = content;
         this.nUps = nUps;
         this.user = user;
         this.publishDate = publishDate; //Fijar la fecha de publicación es tarea de la parte de control.
-        this.comments=new Stack<>();
-        this.auxcomments=new Stack<>();
+        this.comments=new DynamicArray<>();
     }
 
     //Edit content
@@ -31,19 +30,29 @@ public class Publication {
         return content;
     }
 
+    public int getnUps() {
+        return nUps;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Date getPublishDate() {
+        return publishDate;
+    }
+
     public void deletePost(){
         //Requiere acceso a la colección de la que es parte
     }
 
     public void addComment(String commentContent, User user, Date date){
-        comments.push(new Publication(commentContent, user,date));
+        comments.insert(new Publication(commentContent, user,date));
     }
 
-    public Stack<Publication> getComments() {
+    public DynamicArray<Publication> getComments() {
         return comments;
     }
-
-    public Stack<Publication> getAuxcomments() {return auxcomments;  }
 
     public void giveAnUp(){
         nUps++;

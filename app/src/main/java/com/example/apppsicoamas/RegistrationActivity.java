@@ -20,6 +20,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private EditText nuevoUsuario;
     private EditText nuevaContraseña;
+    private EditText nuevoCorreo;
     private Button registrarse;
     private CheckBox soyPsicologo;
 
@@ -30,6 +31,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         nuevoUsuario = findViewById(R.id.etRegUsuario);
         nuevaContraseña = findViewById(R.id.etRegContraseña);
+        nuevoCorreo = findViewById(R.id.etRegCorreo);
         registrarse = findViewById(R.id.bRegistrarse);
         soyPsicologo = findViewById(R.id.cbPsicologo);
 
@@ -38,10 +40,11 @@ public class RegistrationActivity extends AppCompatActivity {
     public void nuevoRegistro(View view){
         String usuario = nuevoUsuario.getText().toString();
         String contraseña = nuevaContraseña.getText().toString();
+        String correo = nuevoCorreo.getText().toString();
 
         if(validar(usuario, contraseña)){
             if(soyPsicologo.isChecked()){
-                DataBase.agregarUsuario(new Psico("nombre génerico", usuario, contraseña));
+                DataBase.agregarUsuario(new Psico("nombre génerico", usuario, contraseña,correo));
                 /*String linea= null;
                 OutputStream os=this.getResources().openRawResource(R.raw.psico);
                 //BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -52,7 +55,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 }*/
             }
             else{
-                DataBase.agregarUsuario(new NoPsico("nombre génerico", usuario, contraseña));
+                DataBase.agregarUsuario(new NoPsico("nombre génerico", usuario, contraseña,correo));
             }
 
             Toast.makeText(RegistrationActivity.this, "Te acabas de registrar!",Toast.LENGTH_LONG).show();

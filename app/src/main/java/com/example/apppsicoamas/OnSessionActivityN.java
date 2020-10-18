@@ -14,30 +14,27 @@ import android.widget.Toast;
 
 import java.util.Date;
 
-import DataStructures.Stack;
 import Pruebas.DataBase;
 import Pruebas.Singleton;
 import PsicObj.*;
 
 public class OnSessionActivityN extends AppCompatActivity {
     private EditText writingPost;
-    /*
-    private Stack<Publication> auxPosts=new Stack<>();
-    private Stack<Publication> auxComments=new Stack<>();
-    private Stack<Publication> posts=new Stack<>();
-    private Stack<Publication> comments=new Stack<>();
-    */
+
+    private int commentsIndex;
+    private int postsIndex;
     private TextView postView;
     private  TextView commentView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        postsIndex=DataBase.posts.length()-1;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_session);
         writingPost=findViewById(R.id.writingPost);
 
         postView=findViewById(R.id.postText);
         commentView=findViewById(R.id.commentText);
-        setPosts();
+        setPosts(true);
         Panic p=Singleton.getCurrentUserN().getPanic();
         if(p!=null){
             if (p.isSolved()) {
@@ -62,56 +59,58 @@ public class OnSessionActivityN extends AppCompatActivity {
         }
 
     }
-    public void setPosts(){
-        DataBase.auxPosts=new Stack<>();
-        try {
+    public void setPosts(boolean firstTime){
+        try{
+            Publication post = DataBase.posts.get(postsIndex);
             if (!DataBase.posts.isEmpty()) {
-                postView.setText(DataBase.posts.peek().getContent());
-                if (!DataBase.posts.peek().getComments().isEmpty()) {
-                    commentView.setText(DataBase.posts.peek().getComments().peek().getContent());
+                postView.setText(post.getUser().getNombre()+"(" +post.getUser().getUsuario() +") dice:"+post.getContent());
+                if(firstTime) commentsIndex=post.getComments().length()-1;
+                Publication comment = post.getComments().get(commentsIndex);
+                if (!post.getComments().isEmpty()) {
+                    commentView.setText(comment.getUser().getNombre()+"(" +comment.getUser().getUsuario() +") dice:"+comment.getContent());
                 } else commentView.setText("(Este post no tiene comentarios)");
             } else {
                 commentView.setText("");
                 postView.setText("No hay publicaciones recientes");
             }
         }catch (NullPointerException e){
-            postView.setText("No hay elementos");
+            Toast.makeText(OnSessionActivityN.this,"No hay elementos que ver",Toast.LENGTH_LONG).show();
         }
     }
+
 
     public void nextComment(View view){
-        try{
-            DataBase.posts.peek().getAuxcomments().push(DataBase.posts.peek().getComments().pop());
-            commentView.setText(DataBase.posts.peek().getComments().peek().getContent());
-        }catch (NullPointerException e){
-            Toast.makeText(OnSessionActivityN.this,"No hay más comentarios",Toast.LENGTH_LONG).show();
+        if(this.commentsIndex > 0){
+            this.commentsIndex--;
+            this.setPosts(false);
+        }else{
+            Toast.makeText(OnSessionActivityN.this,"No hay más elementos que ver",Toast.LENGTH_LONG).show();
         }
-
     }
     public void prevComment(View view){
-        try {
-            DataBase.posts.peek().getComments().push(DataBase.posts.peek().getAuxcomments().pop());
-            commentView.setText(DataBase.posts.peek().getComments().peek().getContent());
-        }catch (NullPointerException e){
-            Toast.makeText(OnSessionActivityN.this,"No hay más comentarios",Toast.LENGTH_LONG).show();
+        if(this.commentsIndex < DataBase.posts.get(postsIndex).getComments().length()-1){
+            this.commentsIndex++;
+            this.setPosts(false);
+        }else{
+            Toast.makeText(OnSessionActivityN.this,"No hay más elementos que ver",Toast.LENGTH_LONG).show();
         }
 
     }
     public void prevPost(View view){
-        try {
-            DataBase.posts.push(DataBase.auxPosts.pop());
-            postView.setText(DataBase.posts.peek().getContent());
-        }catch (NullPointerException e){
-            Toast.makeText(OnSessionActivityN.this,"No hay más publicaciones",Toast.LENGTH_LONG).show();
+        if(this.postsIndex < DataBase.posts.length()-1){
+            this.postsIndex++;
+            this.setPosts(false);
+        }else{
+            Toast.makeText(OnSessionActivityN.this,"No hay más elementos que ver",Toast.LENGTH_LONG).show();
         }
 
     }
     public void nextPost(View view){
-        try {
-            DataBase.auxPosts.push(DataBase.posts.pop());
-            postView.setText(DataBase.posts.peek().getContent());
-        }catch (NullPointerException e){
-            Toast.makeText(OnSessionActivityN.this,"No hay más publicaciones",Toast.LENGTH_LONG).show();
+        if(this.postsIndex > 0){
+            this.postsIndex--;
+            this.setPosts(false);
+        }else{
+            Toast.makeText(OnSessionActivityN.this,"No hay más elementos que ver",Toast.LENGTH_LONG).show();
         }
 
     }
@@ -164,42 +163,46 @@ public class OnSessionActivityN extends AppCompatActivity {
     }
 
     public void signOff(View view){
-        DataBase.updatePostsStacks();
         Singleton.setCurrentUserN(null);
         startActivity(new Intent(OnSessionActivityN.this,MainActivity.class));
     }
 
     public void makeComment(View view){
-        DataBase.updateCommentStacks(DataBase.posts.peek());
-        final Publication post=DataBase.posts.peek();
-        final int prevlenght=post.getComments().length();
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("¿Qué opinas?");
-        final String[] m_Text = {" "};
+        try {
+            final Publication post = DataBase.posts.get(postsIndex);
+            final int prevlenght = post.getComments().length();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("¿Qué opinas?");
+            final String[] m_Text = {" "};
 // Set up the input
-        final EditText input = new EditText(this);
+            final EditText input = new EditText(this);
 // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-        input.setInputType(InputType.TYPE_CLASS_TEXT);
-        builder.setView(input);
+            input.setInputType(InputType.TYPE_CLASS_TEXT);
+            builder.setView(input);
 
 // Set up the buttons
-        builder.setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                m_Text[0] = input.getText().toString();
-                post.addComment(m_Text[0],Singleton.getCurrentUserN(),new Date());
-                if(DataBase.posts.peek().getComments().length()>prevlenght) Toast.makeText(OnSessionActivityN.this,"Mensaje enviado con exito",Toast.LENGTH_LONG).show();
-                else Toast.makeText(OnSessionActivityN.this,"Ups, pasó un error",Toast.LENGTH_LONG).show();
-                startActivity(new Intent(OnSessionActivityN.this,OnSessionActivityN.class));
-            }
-        });
-        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
+            builder.setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    m_Text[0] = input.getText().toString();
+                    post.addComment(m_Text[0], Singleton.getCurrentUserN(), new Date());
+                    if (post.getComments().length() > prevlenght)
+                        Toast.makeText(OnSessionActivityN.this, "Mensaje enviado con exito", Toast.LENGTH_LONG).show();
+                    else
+                        Toast.makeText(OnSessionActivityN.this, "Ups, pasó un error", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(OnSessionActivityN.this, OnSessionActivityN.class));
+                }
+            });
+            builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
 
-        builder.show();
+            builder.show();
+        }catch (NullPointerException e){
+            Toast.makeText(this,"Error",Toast.LENGTH_LONG);
+        }
     }
 }

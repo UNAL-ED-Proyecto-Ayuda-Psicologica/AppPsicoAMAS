@@ -1,13 +1,15 @@
 package DataStructures;
 
-public class DynamicArray {
-    private int[] array;
+import java.lang.reflect.Array;
+
+public class DynamicArray<T extends Object> {
+    private T[] array;
     private int size;
     private int capacity;
     public static int number = 0;
 
     public DynamicArray(){
-        this.array = new int[2];
+        this.array =(T[]) new Object[4];
         this.size = 0;
         this.capacity = 2;
         number++;
@@ -17,15 +19,15 @@ public class DynamicArray {
         return this.size;
     }
 
-    public int get(int index){
+    public T get(int index){
         if(index >= size || index < 0){
             System.out.println("índice no permitido");
-            return Integer.MIN_VALUE;
+            return null;
         };
         return this.array[index];
     }
 
-    public void insert(int index, int value){
+    public void insert(int index, T value){
         if(index >= size || index < 0)
             System.out.println("índice no permitido");
         if(this.size == this.capacity)
@@ -36,12 +38,12 @@ public class DynamicArray {
         this.size++;
     }
 
-    public void insert(int value){ //PUSHBACK
+    public void insert(T value){ //PUSHBACK
         if(this.size == this.capacity) this.resize(2);
         this.array[this.size++] = value;
     }
 
-    public void set(int index, int value){
+    public void set(int index, T value){
         if(index >= size || index < 0)
             System.out.println("índice no permitido");
         this.array[index] = value;
@@ -52,7 +54,7 @@ public class DynamicArray {
             System.out.println("índice no permitido");
             return;
         }
-        int[] newArray = new int[this.capacity];
+        T[] newArray =(T[]) new Object[this.capacity];
         for(int i = 0; i < index; i++)
             newArray[i] = this.array[i];
         for (int j = index+1; j < this.size;j++)
@@ -68,11 +70,11 @@ public class DynamicArray {
         for(int i = index; i < this.size-1; i++){
             this.array[i] = this.array[i+1];
         }
-        this.array[--this.size] = 0;
+        this.array[--this.size] = null;
     }
 
     private void resize(int mult){
-        int[] newArray = new int[mult*this.size];
+        T[] newArray =(T[]) new Object[mult*this.size];
         for(int i = 0; i < this.size; i++)
             newArray[i] = this.array[i];
         this.capacity *= mult;
@@ -94,5 +96,13 @@ public class DynamicArray {
 
         sb.append("]");
         return sb.toString();
+    }
+
+    public boolean isEmpty(){
+        return this.size==0;
+    }
+
+    public int length(){
+        return this.size;
     }
 }

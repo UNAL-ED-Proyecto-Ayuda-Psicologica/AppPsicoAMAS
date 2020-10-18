@@ -10,8 +10,8 @@ public class Psico extends User {
     String University;
     Queue<PsicoDate> pending;
 
-    public Psico(String nombre, String usuario, String contraseña) {
-        super(nombre, usuario, contraseña);
+    public Psico(String nombre, String usuario, String contraseña,String correo) {
+        super(nombre, usuario, contraseña, correo);
     }
 
 

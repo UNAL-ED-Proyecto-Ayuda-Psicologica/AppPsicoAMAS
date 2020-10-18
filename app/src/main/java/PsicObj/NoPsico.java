@@ -8,8 +8,8 @@ public class NoPsico extends User{
     String ClinicStory;
     Panic panic;
 
-    public NoPsico(String nombre, String usuario, String contraseña) {
-        super(nombre, usuario, contraseña);
+    public NoPsico(String nombre, String usuario, String contraseña, String correo) {
+        super(nombre, usuario, contraseña, correo);
     }
 
 

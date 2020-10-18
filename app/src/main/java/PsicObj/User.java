@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 
 import java.util.Date;
 
+import DataStructures.DynamicArray;
 import DataStructures.List;
 import DataStructures.SimplyLinkedList;
 import DataStructures.Stack;
@@ -19,12 +20,13 @@ public abstract class User implements Comparable<User>{
     public List<PsicoDate> dates;
 
 
-    public User(String nombre, String usuario, String contraseña) {
+    public User(String nombre, String usuario, String contraseña, String correo) {
         this.nombre = nombre;
         this.usuario = usuario;
         this.contraseña = contraseña;
         this.posts = new SimplyLinkedList<>();
         this.dates = new SimplyLinkedList<>();
+        this.correo=correo;
     }
 
     public String getNombre() {
@@ -43,9 +45,9 @@ public abstract class User implements Comparable<User>{
         return this.usuario;
     }
 
-    public Publication writePost(Stack<Publication> stackP, String content, Date date) {
+    public Publication writePost(DynamicArray<Publication> stackP, String content, Date date) {
         Publication newPost = new Publication(content, this, date);
-        stackP.push(newPost);
+        stackP.insert(newPost);
         this.posts.insert(newPost);
         return newPost;
     }

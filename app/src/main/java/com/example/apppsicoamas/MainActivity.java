@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             String linea = br.readLine();
             while(linea != null){
                 String[] parts = linea.split(";");
-                Psico b = new Psico(parts[0], parts[2], parts[1]);
+                Psico b = new Psico(parts[0], parts[2], parts[1],null);
                 DataBase.agregarUsuario(b );
                 linea=br.readLine();
             }
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
     public int validarUsuario(String usuario, String contraseña) {
 
-        Psico usuarioEntrante = new Psico("nombre génerico", usuario, contraseña);
+        Psico usuarioEntrante = new Psico("nombre génerico", usuario, contraseña,null);
         int index = DataBase.listadeusuarios.getIndex(usuarioEntrante);
         User user = DataBase.listadeusuarios.getK(index);
         if (index >= 0 /*&& DataBase.listadeusuarios.getK(index).equals(usuarioEntrante)*/) {

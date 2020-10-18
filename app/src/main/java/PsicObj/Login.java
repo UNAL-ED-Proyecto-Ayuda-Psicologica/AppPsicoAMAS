@@ -9,14 +9,14 @@ public class Login {
             listPsico = new SimplyLinkedList<Psico>();
             listNoPsico = new SimplyLinkedList<NoPsico>();
 
-            Psico objPsico = new Psico("Pepito","pepito1","pepito123");
-            Psico objPsico2 = new Psico("Anita", "Ana", "1234");
+            Psico objPsico = new Psico("Pepito","pepito1","pepito123",null);
+            Psico objPsico2 = new Psico("Anita", "Ana", "1234",null);
 
             listPsico.insert(objPsico);
             listPsico.insert(objPsico2);
 
-            NoPsico objNoPsico = new NoPsico("Juan","Juanito","12345");
-            NoPsico objNoPsico2 = new NoPsico("Carlos","carlitos","carlitos12");
+            NoPsico objNoPsico = new NoPsico("Juan","Juanito","12345",null);
+            NoPsico objNoPsico2 = new NoPsico("Carlos","carlitos","carlitos12",null);
             listNoPsico.insert(objNoPsico);
             listNoPsico.insert(objNoPsico2);
         }
