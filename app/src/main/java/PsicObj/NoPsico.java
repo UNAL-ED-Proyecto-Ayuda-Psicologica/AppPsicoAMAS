@@ -6,6 +6,7 @@ import DataStructures.Queue;
 
 public class NoPsico extends User{
     String ClinicStory;
+    Panic panic;
 
     public NoPsico(String nombre, String usuario, String contraseña) {
         super(nombre, usuario, contraseña);
@@ -16,12 +17,21 @@ public class NoPsico extends User{
 
     }
 
-    public void PanicButton(Queue<Panic> panicQueue, String situation){
-        panicQueue.enqueue(new Panic(this, situation));
+    public Panic PanicButton(Queue<Panic> panicQueue, String situation){
+        if(this.panic==null){
+            this.panic=new Panic(this, situation);
+            panicQueue.enqueue(this.panic);
+            return this.panic;
+        }
+        return null;
     }
 
     public void askforDate(Psico doctor, Date date){
         doctor.pending.enqueue(new PsicoDate(doctor,this,date));//La confirmación de la cita es inmediata en este caso
+    }
+
+    public Panic getPanic() {
+        return panic;
     }
 
     @Override

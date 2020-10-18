@@ -1,14 +1,19 @@
 package PsicObj;
 
 public class Panic {
-    private User user;
+    private NoPsico user;
     private String situation;
     private boolean isSolved;
+    private Psico psico;
 
-    public Panic(User user, String situation) {
+    public Panic(NoPsico user, String situation) {
         this.user = user;
         this.situation = situation;
         this.isSolved=false;
+    }
+
+    public Psico getPsico() {
+        return psico;
     }
 
     public User getUser() {
@@ -23,7 +28,8 @@ public class Panic {
         return isSolved;
     }
 
-    public void solve(){
+    public void solve(Psico psico) {
+        this.psico=psico;
         this.isSolved=true;
     }
 }

@@ -43,7 +43,7 @@ public class OnSessionActivityP extends AppCompatActivity {
 
         if(!DataBase.botonesDePanico.isEmpty()) {
             Panic panicO = DataBase.botonesDePanico.peek();
-            String userViewString = panicO.getUser().getUsuario() + " necesita tu ayuda:";
+            String userViewString = panicO.getUser().getNombre() + " necesita tu ayuda:";
             String situationViewString = panicO.getSituation();
             userView.setText(userViewString);
             userSituation.setText(situationViewString);
@@ -118,13 +118,10 @@ public class OnSessionActivityP extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("¿Qué opinas?");
         final String[] m_Text = {" "};
-// Set up the input
         final EditText input = new EditText(this);
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
 
-// Set up the buttons
         builder.setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -144,5 +141,28 @@ public class OnSessionActivityP extends AppCompatActivity {
         builder.show();
     }
 
+    public void attendPanic(View view){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Este es tu paciente");
+        final TextView textView= new TextView(this);
+        textView.setText("El correo del paciente es: "+DataBase.botonesDePanico.peek().getUser().getCorreo()+"\nEstablece contacto con él apenas puedas");
+        builder.setView(textView);
+
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Panic p=DataBase.botonesDePanico.dequeue();
+                p.solve(Singleton.getCurrentUserP());
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+    }
 
 }

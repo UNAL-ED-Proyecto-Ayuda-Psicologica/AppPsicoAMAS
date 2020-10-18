@@ -38,6 +38,28 @@ public class OnSessionActivityN extends AppCompatActivity {
         postView=findViewById(R.id.postText);
         commentView=findViewById(R.id.commentText);
         setPosts();
+        Panic p=Singleton.getCurrentUserN().getPanic();
+        if(p!=null){
+            if (p.isSolved()) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Un psicólogo puede responder a tu ayuda");
+                final String[] m_Text = {" "};
+// Set up the input
+                final TextView output = new TextView(this);
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                output.setText("Su correo es: " + p.getPsico().getCorreo());
+                builder.setView(output);
+
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
+            }
+        }
 
     }
     public void setPosts(){
@@ -113,7 +135,7 @@ public class OnSessionActivityN extends AppCompatActivity {
                 m_Text[0] = input.getText().toString();
                 Singleton.getCurrentUserN().PanicButton(DataBase.botonesDePanico, m_Text[0]);
                 if(DataBase.botonesDePanico.length()>prevlenght) Toast.makeText(OnSessionActivityN.this,"Mensaje enviado con exito",Toast.LENGTH_LONG).show();
-                else Toast.makeText(OnSessionActivityN.this,"Ups, pasó un error",Toast.LENGTH_LONG).show();
+                else Toast.makeText(OnSessionActivityN.this,"Ups, pasó un error, tal vez ya enviaste tu mensaje",Toast.LENGTH_LONG).show();
             }
         });
         builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {

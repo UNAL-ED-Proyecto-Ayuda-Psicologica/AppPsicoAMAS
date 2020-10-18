@@ -18,12 +18,25 @@ public abstract class User implements Comparable<User>{
     public List<Publication> posts;
     public List<PsicoDate> dates;
 
+
     public User(String nombre, String usuario, String contraseña) {
         this.nombre = nombre;
         this.usuario = usuario;
         this.contraseña = contraseña;
         this.posts = new SimplyLinkedList<>();
         this.dates = new SimplyLinkedList<>();
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public String getUsuario(){
