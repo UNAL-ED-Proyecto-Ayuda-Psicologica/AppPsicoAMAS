@@ -10,6 +10,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.*;
+
 import Pruebas.DataBase;
 import PsicObj.NoPsico;
 import PsicObj.Psico;
@@ -40,6 +42,14 @@ public class RegistrationActivity extends AppCompatActivity {
         if(validar(usuario, contraseña)){
             if(soyPsicologo.isChecked()){
                 DataBase.agregarUsuario(new Psico("nombre génerico", usuario, contraseña));
+                /*String linea= null;
+                OutputStream os=this.getResources().openRawResource(R.raw.psico);
+                //BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                try {
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }*/
             }
             else{
                 DataBase.agregarUsuario(new NoPsico("nombre génerico", usuario, contraseña));
