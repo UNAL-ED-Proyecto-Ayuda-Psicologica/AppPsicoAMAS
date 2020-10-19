@@ -38,23 +38,24 @@ public class OnSessionActivityN extends AppCompatActivity {
         Panic p=Singleton.getCurrentUserN().getPanic();
         if(p!=null){
             if (p.isSolved()) {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Un psicólogo puede responder a tu ayuda");
+                final AlertDialog.Builder builde = new AlertDialog.Builder(this);
+                builde.setTitle("Un psicólogo puede responder a tu ayuda");
                 final String[] m_Text = {" "};
 // Set up the input
                 final TextView output = new TextView(this);
 // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
                 output.setText("Su correo es: " + p.getPsico().getCorreo());
-                builder.setView(output);
+                builde.setView(output);
 
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                builde.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        Singleton.getCurrentUserN().solvePanic();
                         dialog.cancel();
                     }
                 });
 
-                builder.show();
+                builde.show();
             }
         }
 
@@ -205,4 +206,46 @@ public class OnSessionActivityN extends AppCompatActivity {
             Toast.makeText(this,"Error",Toast.LENGTH_LONG);
         }
     }
+    public void deletePost(View view){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("¿Estás seguro de que quieres borrar este post?");
+
+        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                DataBase.posts.delete(postsIndex);
+                Toast.makeText(OnSessionActivityN.this,"Post borrado exitosamente",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(OnSessionActivityN.this,OnSessionActivityN.class));
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+
+    }
+
+    public void deleteComment(View view){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("¿Estás seguro de que quieres borrar este post?");
+
+        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Publication post=DataBase.posts.get(postsIndex);
+                post.getComments().delete(postsIndex);
+                Toast.makeText(OnSessionActivityN.this,"Comentario borrado exitosamente",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(OnSessionActivityN.this,OnSessionActivityN.class));
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
 }

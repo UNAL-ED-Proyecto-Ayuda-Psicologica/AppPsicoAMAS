@@ -192,4 +192,31 @@
             android:text="Siguiente" />
     </LinearLayout>
 
+    <Button
+    android:id="@+id/bDeletePost"
+    style="@style/Widget.AppCompat.Button"
+    android:layout_width="37dp"
+    android:layout_height="38dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginLeft="20dp"
+    android:onClick="deletePost"
+    android:text="X"
+    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+    app:layout_constraintBottom_toBottomOf="@+id/postView"
+    app:layout_constraintStart_toEndOf="@+id/postView"
+    app:layout_constraintTop_toTopOf="@+id/postView" />
+
+    <Button
+        android:id="@+id/bDeleteComment"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="37dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:onClick="deleteComment"
+        android:text="X"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintBottom_toBottomOf="@+id/commentView"
+        app:layout_constraintStart_toEndOf="@+id/commentView"
+        app:layout_constraintTop_toTopOf="@+id/commentView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
