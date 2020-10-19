@@ -212,4 +212,48 @@ public class OnSessionActivityN extends AppCompatActivity {
         Toast.makeText(OnSessionActivityN.this, "Has eliminado tu cuenta con éxito!", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(OnSessionActivityN.this,MainActivity.class));
     }
+
+    public void deletePost(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("¿Estás seguro de que quieres borrar este post?");
+
+        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                DataBase.posts.delete(postsIndex);
+                Toast.makeText(OnSessionActivityN.this, "Post borrado exitosamente", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(OnSessionActivityN.this, OnSessionActivityN.class));
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+
+    }
+
+    public void deleteComment(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("¿Estás seguro de que quieres borrar este post?");
+
+        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Publication post = DataBase.posts.get(postsIndex);
+                post.getComments().delete(postsIndex);
+                Toast.makeText(OnSessionActivityN.this, "Comentario borrado exitosamente", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(OnSessionActivityN.this, OnSessionActivityN.class));
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+    }
 }
