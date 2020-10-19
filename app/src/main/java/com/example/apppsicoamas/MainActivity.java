@@ -43,16 +43,30 @@ public class MainActivity extends AppCompatActivity {
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
         try {
+
             String linea = br.readLine();
+
+            /*String[] parts = linea.split(";");
+            Psico b = new Psico(parts[0], parts[2], parts[1]);
+            long inicio = System.nanoTime();
+            for(int i=0; i<6000000;i++){
+                DataBase.agregarUsuario(b);
+            }*/ //Para tener en cuenta solo el tiempo de agregar a la lista
+
+            long inicio = System.nanoTime();
             while(linea != null){
                 String[] parts = linea.split(";");
                 Psico b = new Psico(parts[0], parts[2], parts[1]);
-                DataBase.agregarUsuario(b );
+                DataBase.agregarUsuario(b);
                 linea=br.readLine();
             }
+
+            long fin = System.nanoTime();
+            Toast.makeText(MainActivity.this, "" +((fin - inicio) * 1.0e-9) +"   "+ DataBase.listadeusuarios.length(), Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public void ingresar(View view){
