@@ -12,6 +12,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Date;
 
 import Pruebas.DataBase;
@@ -126,6 +130,7 @@ public class OnSessionActivityN extends AppCompatActivity {
 // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
+
 
 // Set up the buttons
         builder.setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
