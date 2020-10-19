@@ -205,4 +205,10 @@ public class OnSessionActivityN extends AppCompatActivity {
             Toast.makeText(this,"Error",Toast.LENGTH_LONG);
         }
     }
+
+    public void deleteAccount(View view){
+        DataBase.listadeusuarios.delete(Singleton.getCurrentUserN());
+        Toast.makeText(OnSessionActivityN.this, "Has eliminado tu cuenta con éxito!", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(OnSessionActivityN.this,MainActivity.class));
+    }
 }
