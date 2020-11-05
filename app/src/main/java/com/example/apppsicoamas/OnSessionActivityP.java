@@ -39,7 +39,11 @@ public class OnSessionActivityP extends AppCompatActivity {
         setPosts(true);
 
         if(!DataBase.botonesDePanico.isEmpty()) {
+            long inicio = System.nanoTime();
             Panic panicO = DataBase.botonesDePanico.peek();
+            long fin = System.nanoTime();
+
+            Toast.makeText(this, "Reviso la cola " + ((fin - inicio) * 1.0e-9), Toast.LENGTH_LONG).show();
             String userViewString = panicO.getUser().getNombre() + " necesita tu ayuda:";
             String situationViewString = panicO.getSituation();
             userView.setText(userViewString);
@@ -159,7 +163,11 @@ public class OnSessionActivityP extends AppCompatActivity {
             builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    long inicio = System.nanoTime();
                     Panic p = DataBase.botonesDePanico.dequeue();
+                    long fin = System.nanoTime();
+
+                    Toast.makeText(OnSessionActivityP.this, "Desencolo " + ((fin - inicio) * 1.0e-9), Toast.LENGTH_LONG).show();
                     p.solve(Singleton.getCurrentUserP());
                     startActivity(new Intent(OnSessionActivityP.this,OnSessionActivityP.class));
                 }

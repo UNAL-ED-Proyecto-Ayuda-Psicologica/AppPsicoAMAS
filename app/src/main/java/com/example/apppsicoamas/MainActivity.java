@@ -39,16 +39,30 @@ public class MainActivity extends AppCompatActivity {
         bienvenida = findViewById(R.id.tvBienvenida);
         nuevoRegistro = findViewById(R.id.bNuevoRegistro);
 
-        InputStream is=this.getResources().openRawResource(R.raw.psico);
+        InputStream is=this.getResources().openRawResource(R.raw.nopsico);
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        InputStream is2=this.getResources().openRawResource(R.raw.panico);
+        BufferedReader br2 = new BufferedReader(new InputStreamReader(is2));
+        InputStream is3=this.getResources().openRawResource(R.raw.psico);
+        BufferedReader br3 = new BufferedReader(new InputStreamReader(is3));
 
         try {
             String linea = br.readLine();
+            String linea2 = br2.readLine();
             while(linea != null){
                 String[] parts = linea.split(";");
-                Psico b = new Psico(parts[0], parts[2], parts[1],null);
-                DataBase.agregarUsuario(b );
+                NoPsico b = new NoPsico(parts[0], parts[2], parts[1],null);
+                DataBase.agregarUsuario(b);
+                b.PanicButton(DataBase.botonesDePanico, linea2);
                 linea=br.readLine();
+                linea2 = br2.readLine();
+            }
+            String linea3 = br3.readLine();
+            while(linea3 != null){
+                String[] parts = linea3.split(";");
+                Psico b = new Psico(parts[0], parts[2], parts[1],null);
+                DataBase.agregarUsuario(b);
+                linea3=br3.readLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
