@@ -6,31 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".OnSessionActivityN">
 
-    <TextView
-        android:id="@+id/tvBienvenida"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Bienvenido al proyecto AMAS! "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/bPanic"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="64dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/special_button"
         android:onClick="panicButton"
-        android:text="Botón del pánico"
+        android:text="@string/panico"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBienvenida" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/bSignOff"
@@ -52,21 +43,22 @@
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:ems="10"
+        android:hint="@string/escribir"
         android:inputType="textPersonName"
-        android:text="Escribe lo que sientas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bPanic" />
 
     <Button
         android:id="@+id/publishButton"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Publicar"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/custom_button"
         android:onClick="makePost"
+        android:text="@string/publicar"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/writingPost"
         app:layout_constraintTop_toBottomOf="@+id/writingPost" />
 

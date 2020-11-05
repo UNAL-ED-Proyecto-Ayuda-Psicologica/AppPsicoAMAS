@@ -97,16 +97,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
         return 0;
-        //Formato lectura archivo de texto
-        /*try {
-            FileReader fr = null;
-            fr = new FileReader("libros.txt");
-            BufferedReader br = new BufferedReader(fr);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-        //Fin formato
-
     }
 
     public void registrarse(View view){
