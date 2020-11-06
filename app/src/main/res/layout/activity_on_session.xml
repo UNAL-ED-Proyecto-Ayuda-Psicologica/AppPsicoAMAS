@@ -9,13 +9,13 @@
     <Button
         android:id="@+id/bPanic"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="250dp"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:background="@drawable/special_button"
         android:onClick="panicButton"
         android:text="@string/panico"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,9 +51,9 @@
 
     <Button
         android:id="@+id/publishButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="1dp"
         android:background="@drawable/custom_button"
         android:onClick="makePost"
         android:text="@string/publicar"
@@ -125,7 +125,7 @@
         android:id="@+id/publications"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Publicaciones"
+        android:text="@string/publicaciones"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toTopOf="@+id/postView"
         app:layout_constraintStart_toStartOf="@+id/postView" />
@@ -134,7 +134,7 @@
         android:id="@+id/comments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Comentarios"
+        android:text="@string/comentarios"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="@+id/postView"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />

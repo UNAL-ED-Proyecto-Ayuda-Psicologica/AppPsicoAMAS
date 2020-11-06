@@ -36,17 +36,21 @@
 
     <Button
         android:id="@+id/bRegistrarse"
-        android:layout_width="wrap_content"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="236dp"
+        android:background="@drawable/custom_button"
         android:onClick="nuevoRegistro"
-        android:text="Registrarme"
+        android:text="@string/registrar"
+        android:textAllCaps="false"
+        android:textColor="@android:color/primary_text_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etRegContraseña"
-        app:layout_constraintVertical_bias="0.816" />
+        app:layout_constraintTop_toBottomOf="@+id/etRegCorreo"
+        app:layout_constraintVertical_bias="0.84" />
 
     <CheckBox
         android:id="@+id/cbPsicologo"
@@ -55,8 +59,10 @@
         android:text="Soy psicológo"
         app:layout_constraintBottom_toTopOf="@+id/bRegistrarse"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etRegContraseña" />
+        app:layout_constraintTop_toBottomOf="@+id/etRegContraseña"
+        app:layout_constraintVertical_bias="0.66" />
 
     <EditText
         android:id="@+id/etRegCorreo"
