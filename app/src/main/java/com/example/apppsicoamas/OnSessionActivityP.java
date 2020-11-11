@@ -19,14 +19,16 @@ import DataStructures.Stack;
 import Pruebas.DataBase;
 import Pruebas.Singleton;
 import PsicObj.*;
-public class OnSessionActivityP extends AppCompatActivity {
+public class OnSessionActivityP extends OnSessionActivity /*AppCompatActivity*/ {
     private TextView userView;
     private TextView userSituation;
+
+    /*
     private int commentsIndex;
     private int postsIndex;
     private TextView postView;
     private  TextView commentView;
-
+*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         postsIndex=DataBase.posts.length()-1;
@@ -55,7 +57,7 @@ public class OnSessionActivityP extends AppCompatActivity {
 
 
     }
-
+/*
     public void setPosts(boolean firstTime){
         try {
             Publication post = DataBase.posts.get(postsIndex);
@@ -70,7 +72,7 @@ public class OnSessionActivityP extends AppCompatActivity {
                 commentView.setText("");
                 postView.setText("No hay publicaciones recientes");
             }
-        }catch (NullPointerException e){
+        }catch (Exception e){
             Toast.makeText(OnSessionActivityP.this,"No hay elementos que ver",Toast.LENGTH_LONG).show();
         }
     }
@@ -95,7 +97,7 @@ public class OnSessionActivityP extends AppCompatActivity {
     public void prevPost(View view){
         if(this.postsIndex < DataBase.posts.length()-1){
             this.postsIndex++;
-            this.setPosts(false);
+            this.setPosts(true);
         }else{
             Toast.makeText(OnSessionActivityP.this,"No hay más elementos que ver",Toast.LENGTH_LONG).show();
         }
@@ -104,7 +106,7 @@ public class OnSessionActivityP extends AppCompatActivity {
     public void nextPost(View view){
         if(this.postsIndex > 0){
             this.postsIndex--;
-            this.setPosts(false);
+            this.setPosts(true);
         }else{
             Toast.makeText(OnSessionActivityP.this,"No hay más elementos que ver",Toast.LENGTH_LONG).show();
         }
@@ -132,7 +134,7 @@ public class OnSessionActivityP extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     m_Text[0] = input.getText().toString();
-                    post.addComment(m_Text[0], Singleton.getCurrentUserN(), new Date());
+                    post.addComment(m_Text[0], Singleton.getCurrentUserP(), new Date());
                     if (post.getComments().length() > prevlenght)
                         Toast.makeText(OnSessionActivityP.this, "Mensaje enviado con exito", Toast.LENGTH_LONG).show();
                     else
@@ -151,7 +153,7 @@ public class OnSessionActivityP extends AppCompatActivity {
             Toast.makeText(this,"Error",Toast.LENGTH_LONG);
         }
     }
-
+*/
     public void attendPanic(View view){
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -185,6 +187,16 @@ public class OnSessionActivityP extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void update() {
+        startActivity(new Intent(OnSessionActivityP.this,OnSessionActivityP.class));
+    }
+
+    @Override
+    public User getCurrentUser() {
+        return Singleton.getCurrentUserP();
+    }
+/*
     public void deletePost(View view){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("¿Estás seguro de que quieres borrar este post?");
@@ -215,7 +227,7 @@ public class OnSessionActivityP extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Publication post=DataBase.posts.get(postsIndex);
-                post.getComments().delete(postsIndex);
+                post.getComments().delete(commentsIndex);
                 Toast.makeText(OnSessionActivityP.this,"Comentario borrado exitosamente",Toast.LENGTH_LONG).show();
                 startActivity(new Intent(OnSessionActivityP.this,OnSessionActivityP.class));
             }
@@ -236,5 +248,5 @@ public class OnSessionActivityP extends AppCompatActivity {
         Toast.makeText(OnSessionActivityP.this, "Has eliminado tu cuenta con éxito!", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(OnSessionActivityP.this, MainActivity.class));
     }
-
+*/
 }

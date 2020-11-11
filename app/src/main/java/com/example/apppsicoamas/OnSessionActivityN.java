@@ -22,20 +22,21 @@ import Pruebas.DataBase;
 import Pruebas.Singleton;
 import PsicObj.*;
 
-public class OnSessionActivityN extends AppCompatActivity {
+public class OnSessionActivityN extends OnSessionActivity /*AppCompatActivity*/ {
     private EditText writingPost;
-
+/*
     private int commentsIndex;
     private int postsIndex;
     private TextView postView;
     private  TextView commentView;
+
+ */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         postsIndex=DataBase.posts.length()-1;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_session);
         writingPost=findViewById(R.id.writingPost);
-
         postView=findViewById(R.id.postText);
         commentView=findViewById(R.id.commentText);
         setPosts(true);
@@ -63,6 +64,7 @@ public class OnSessionActivityN extends AppCompatActivity {
         }
 
     }
+    /*
     public void setPosts(boolean firstTime){
         try{
             Publication post = DataBase.posts.get(postsIndex);
@@ -81,6 +83,8 @@ public class OnSessionActivityN extends AppCompatActivity {
             Toast.makeText(OnSessionActivityN.this,"No hay elementos que ver",Toast.LENGTH_LONG).show();
         }
     }
+
+
 
 
     public void nextComment(View view){
@@ -103,7 +107,7 @@ public class OnSessionActivityN extends AppCompatActivity {
     public void prevPost(View view){
         if(this.postsIndex < DataBase.posts.length()-1){
             this.postsIndex++;
-            this.setPosts(false);
+            this.setPosts(true);
         }else{
             Toast.makeText(OnSessionActivityN.this,"No hay más elementos que ver",Toast.LENGTH_LONG).show();
         }
@@ -112,13 +116,13 @@ public class OnSessionActivityN extends AppCompatActivity {
     public void nextPost(View view){
         if(this.postsIndex > 0){
             this.postsIndex--;
-            this.setPosts(false);
+            this.setPosts(true);
         }else{
             Toast.makeText(OnSessionActivityN.this,"No hay más elementos que ver",Toast.LENGTH_LONG).show();
         }
 
     }
-
+*/
 
     public void panicButton(View view){
         final int prevlenght=DataBase.botonesDePanico.length();
@@ -167,6 +171,16 @@ public class OnSessionActivityN extends AppCompatActivity {
 
     }
 
+    @Override
+    public void update() {
+        startActivity(new Intent(OnSessionActivityN.this,OnSessionActivityN.class));
+    }
+
+    @Override
+    public User getCurrentUser() {
+        return Singleton.getCurrentUserN();
+    }
+/*
     public void signOff(View view){
         Singleton.setCurrentUserN(null);
         startActivity(new Intent(OnSessionActivityN.this,MainActivity.class));
@@ -248,7 +262,7 @@ public class OnSessionActivityN extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Publication post = DataBase.posts.get(postsIndex);
-                post.getComments().delete(postsIndex);
+                post.getComments().delete(commentsIndex);
                 Toast.makeText(OnSessionActivityN.this, "Comentario borrado exitosamente", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(OnSessionActivityN.this, OnSessionActivityN.class));
             }
@@ -261,4 +275,5 @@ public class OnSessionActivityN extends AppCompatActivity {
         });
         builder.show();
     }
+*/
 }

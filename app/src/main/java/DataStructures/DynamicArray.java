@@ -2,13 +2,14 @@ package DataStructures;
 
 import java.lang.reflect.Array;
 
-public class DynamicArray<T extends Object> {
+public class DynamicArray<T> {
     private T[] array;
     private int size;
     private int capacity;
     public static int number = 0;
 
     public DynamicArray(){
+
         this.array =(T[]) new Object[4];
         this.size = 0;
         this.capacity = 2;
