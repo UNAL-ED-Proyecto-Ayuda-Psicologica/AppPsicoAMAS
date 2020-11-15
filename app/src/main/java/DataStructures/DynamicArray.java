@@ -1,8 +1,4 @@
-package DataStructures;
-
-import java.lang.reflect.Array;
-
-public class DynamicArray<T> {
+package DataStructures;public class DynamicArray<T> {
     private T[] array;
     private int size;
     private int capacity;
@@ -107,3 +103,6 @@ public class DynamicArray<T> {
         return this.size;
     }
 }
+
+import java.lang.reflect.Array;
+
