@@ -101,6 +101,24 @@ public class AVLTree<T extends Comparable<? super T>> {
         }
     }
 
+    public T getElement(T value){
+        return getElement(value, this.root);
+    }
+
+    private T getElement(T value, AVLNode<T> node){
+        if(node == null){
+            return null;
+        }
+        int compareResult = value.compareTo(node.value);
+        if(compareResult < 0){
+            return getElement(value, node.leftSon);
+        }else if(compareResult > 0){
+            return getElement(value, node.rightSon);
+        }else{
+            return node.value;
+        }
+    }
+
     public void makeEmpty(){
         this.root = null;
     }

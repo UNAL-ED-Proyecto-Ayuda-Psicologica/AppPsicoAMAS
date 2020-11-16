@@ -68,7 +68,7 @@ public class RegistrationActivity extends AppCompatActivity {
         if(usuario.isEmpty() || contraseña.length() < 8){
             Toast.makeText(RegistrationActivity.this, "Ingresa una contraseña más larga",Toast.LENGTH_LONG).show();
             return false;
-        } else if(DataBase.listanombredeusuarios.getIndex(usuario) >= 0 ){
+        } else if(DataBase.listanombredeusuarios.contains(usuario)){
             Toast.makeText(RegistrationActivity.this, "Este nombre de usuario está ocupado, ingresa uno distinto!",Toast.LENGTH_LONG).show();
             return false;
         } else{
