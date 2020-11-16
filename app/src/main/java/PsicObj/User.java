@@ -7,7 +7,6 @@ import java.util.Date;
 import DataStructures.DynamicArray;
 import DataStructures.List;
 import DataStructures.SimplyLinkedList;
-import DataStructures.Stack;
 
 public abstract class User implements Comparable<User>{
     protected String nombre;
@@ -73,15 +72,11 @@ public abstract class User implements Comparable<User>{
         posts.deleteIndex(index);
     }
 
-    public Publication upPost(Publication post) {
-        post.giveAnUp();
+    public Publication toggleUp(Publication post) {
+        post.toggleAnUp(this);
         return post;
     }
 
-    public Publication unupPost(Publication post) {
-        post.removeUp();
-        return post;
-    }
 
     //public abstract int compareTo(Psico o);
 
@@ -95,6 +90,5 @@ public abstract class User implements Comparable<User>{
             return false;
         }
     }
-
 
 }

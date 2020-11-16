@@ -66,7 +66,7 @@ public class Heap<T extends Comparable<? super T>> {
     }
 
     private void enlargeArray(int newCapacity) {
-        T[] newArray = (T[]) new Object[newCapacity];
+        T[] newArray = (T[]) new Comparable[newCapacity];
         for (int i = 0; i < this.size; i++) {
             newArray[i] = this.array[i];
         }
@@ -83,4 +83,7 @@ public class Heap<T extends Comparable<? super T>> {
     }
 
 
+    public int length() {
+        return this.size;
+    }
 }

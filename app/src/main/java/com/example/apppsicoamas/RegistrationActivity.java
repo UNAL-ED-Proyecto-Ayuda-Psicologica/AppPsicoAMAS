@@ -45,7 +45,7 @@ public class RegistrationActivity extends AppCompatActivity {
         if(validar(usuario, contraseña)){
             if(soyPsicologo.isChecked()){
                 DataBase.agregarUsuario(new Psico("nombre génerico", usuario, contraseña,correo));
-                /*String linea= null;
+                /*String linea= null;<
                 OutputStream os=this.getResources().openRawResource(R.raw.psico);
                 //BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 try {

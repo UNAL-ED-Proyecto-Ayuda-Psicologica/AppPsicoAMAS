@@ -166,11 +166,12 @@ public class OnSessionActivityP extends OnSessionActivity /*AppCompatActivity*/ 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     long inicio = System.nanoTime();
-                    Panic p = DataBase.botonesDePanico.dequeue();
+                    Singleton.getCurrentUserP().attendtoHelp(DataBase.botonesDePanico);
+                    //Panic p = DataBase.botonesDePanico.dequeue();
                     long fin = System.nanoTime();
 
                     Toast.makeText(OnSessionActivityP.this, "Desencolo " + ((fin - inicio) * 1.0e-9), Toast.LENGTH_LONG).show();
-                    p.solve(Singleton.getCurrentUserP());
+                    //p.solve(Singleton.getCurrentUserP());
                     startActivity(new Intent(OnSessionActivityP.this,OnSessionActivityP.class));
                 }
             });

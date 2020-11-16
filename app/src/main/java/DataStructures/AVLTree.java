@@ -154,7 +154,7 @@ public class AVLTree<T extends Comparable<? super T>> {
     }
 
     private void levelOrder(AVLNode<T> node) {
-        Queue<AVLNode<T>> cola = new Queue<>();
+        Queue<AVLNode<T>> cola = new QueueList<>();
 
         cola.enqueue(node);
 

@@ -1,7 +1,6 @@
 package com.example.apppsicoamas;
 
 import androidx.appcompat.app.*;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,13 +8,12 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Date;
 
 import Pruebas.DataBase;
@@ -129,20 +127,42 @@ public class OnSessionActivityN extends OnSessionActivity /*AppCompatActivity*/ 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("¿Cúal es tu situación?");
         final String[] m_Text = {" "};
-// Set up the input
+        final LinearLayout layout = new LinearLayout(this);
+        final RadioGroup rgroup=new RadioGroup(this);
         final EditText input = new EditText(this);
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
         input.setInputType(InputType.TYPE_CLASS_TEXT);
-        builder.setView(input);
+        input.setHint("Agrega un comentario de tu situación");
+
+        final RadioButton prio1= new RadioButton(this);
+        final RadioButton prio2= new RadioButton(this);
+        final RadioButton prio3= new RadioButton(this);
+
+        layout.setOrientation(LinearLayout.VERTICAL);
+
+        prio1.setText("Estás pensando en suicidarte y hacerte daño, o ya lo has intentado");
+        prio2.setText("Estas alejado/ausente de tus seres queridos, te sientes cansado(a), deprimido(a), no puedes dormir bien o estás ansioso");
+        prio3.setText("No te sientes en crisis pero crees que necesitas ayuda psicológica o psiquiátrica");
+
+        rgroup.addView(prio1);
+        rgroup.addView(prio2);
+        rgroup.addView(prio3);
+
+        layout.addView(rgroup);
+        layout.addView(input);
+        builder.setView(layout);
 
 
 // Set up the buttons
         builder.setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                int prio = 0;
+                if(prio1.isChecked()) prio = 1;
+                else if(prio2.isChecked()) prio = 2;
+                else if(prio3.isChecked()) prio = 3;
                 m_Text[0] = input.getText().toString();
-                Singleton.getCurrentUserN().PanicButton(DataBase.botonesDePanico, m_Text[0]);
-                if(DataBase.botonesDePanico.length()>prevlenght) Toast.makeText(OnSessionActivityN.this,"Mensaje enviado con exito",Toast.LENGTH_LONG).show();
+                Singleton.getCurrentUserN().panicButton(DataBase.botonesDePanico, m_Text[0],prio);
+                if(DataBase.botonesDePanico.length()>prevlenght) Toast.makeText(OnSessionActivityN.this,"Mensaje enviado con exito"+prio,Toast.LENGTH_LONG).show();
                 else Toast.makeText(OnSessionActivityN.this,"Ups, pasó un error, tal vez ya enviaste tu mensaje",Toast.LENGTH_LONG).show();
             }
         });

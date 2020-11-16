@@ -1,5 +1,6 @@
 package com.example.apppsicoamas;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.InputType;
@@ -27,11 +28,13 @@ public abstract class OnSessionActivity extends AppCompatActivity {
     public abstract void update();
     public abstract User getCurrentUser();
 
+    @SuppressLint("SetTextI18n")
     public void setPosts(boolean firstTime){
         try{
             Publication post = DataBase.posts.get(postsIndex);
             if (!DataBase.posts.isEmpty()) {
-                postView.setText(post.getUser().getNombre()+"(" +post.getUser().getUsuario() +") dice: \n"+post.getContent()+"\n [Este post tiene "+post.getnUps()+" ups y fue publicado el "+post.getPublishDate().toString()+"]");
+                postView.setText(post.getUser().getNombre()+"(" +post.getUser().getUsuario() +") dice:" +
+                        " \n"+post.getContent()+"\n [Este post tiene "+post.getnUps()+" ups y fue publicado el "+post.getPublishDate().toString()+"]");
                 if(firstTime) commentsIndex=post.getComments().length()-1;
                 Publication comment = post.getComments().get(commentsIndex);
                 if (!post.getComments().isEmpty()) {
@@ -183,16 +186,24 @@ public abstract class OnSessionActivity extends AppCompatActivity {
         startActivity(new Intent(OnSessionActivity.this, MainActivity.class));
     }
 
-    public void giveAnUp(View view){
+    public void toggleUpPost(View view){
         Publication post=DataBase.posts.get(postsIndex);
-        post=getCurrentUser().upPost(post);
-        update();
+        if(post!=null) {
+            post = getCurrentUser().toggleUp(post);
+            setPosts(false);
+        }else{
+            Toast.makeText(OnSessionActivity.this,"No hay ningun post",Toast.LENGTH_SHORT).show();
+        }
     }
 
-    public void removeUp(View view){
-        Publication post=DataBase.posts.get(postsIndex);
-        post=getCurrentUser().unupPost(post);
-        update();
+    public void toggleUpComment(View view){
+        Publication comment=DataBase.posts.get(postsIndex).getComments().get(commentsIndex);
+        if(comment!=null){
+            comment=getCurrentUser().toggleUp(comment);
+            setPosts(false);
+        }else{
+            Toast.makeText(OnSessionActivity.this,"No hay ningun comentario",Toast.LENGTH_SHORT).show();
+        }
     }
 
 

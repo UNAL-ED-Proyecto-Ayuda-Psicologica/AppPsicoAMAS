@@ -17,10 +17,19 @@ public class NoPsico extends User{
 
     }
 
-    public Panic PanicButton(Queue<Panic> panicQueue, String situation){
+    public Panic panicButton(Queue<Panic> panicQueue, String situation){
         if(this.panic==null){
             this.panic=new Panic(this, situation);
             panicQueue.enqueue(this.panic);
+            return this.panic;
+        }
+        return null;
+    }
+
+    public Panic panicButton(Queue<Panic> panicQueue, String situation, int priority){
+        if(this.panic==null){
+            this.panic=new Panic(this, situation);
+            panicQueue.enqueue(this.panic,priority);
             return this.panic;
         }
         return null;

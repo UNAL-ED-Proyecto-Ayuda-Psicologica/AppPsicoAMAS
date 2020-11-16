@@ -16,7 +16,9 @@ public class Psico extends User {
 
 
 
-    public void attendtoHelp(){
+    public void attendtoHelp(Queue<Panic> queue){
+        Panic p = queue.dequeue();
+        p.solve(this);
 
     }
 

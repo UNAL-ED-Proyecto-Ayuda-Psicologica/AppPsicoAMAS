@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +12,6 @@ import android.widget.Toast;
 
 import java.io.*;
 
-import DataStructures.DoublyLinkedList;
 import Pruebas.DataBase;
 import Pruebas.Singleton;
 import PsicObj.NoPsico;
@@ -53,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 String[] parts = linea.split(";");
                 NoPsico b = new NoPsico(parts[0], parts[2], parts[1],null);
                 DataBase.agregarUsuario(b);
-                b.PanicButton(DataBase.botonesDePanico, linea2);
+                b.panicButton(DataBase.botonesDePanico, linea2,2);
                 linea=br.readLine();
                 linea2 = br2.readLine();
             }

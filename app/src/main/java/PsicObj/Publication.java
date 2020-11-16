@@ -3,12 +3,13 @@ package PsicObj;
 import java.util.Date;
 
 
-import DataStructures.DynamicArray;
+import DataStructures.*;
 import DataStructures.Stack;
 
 public class Publication {
     String content;
     int nUps;
+    AVLTree<User> users;
     User user;
     Date publishDate;
     DynamicArray<Publication> comments;
@@ -19,6 +20,7 @@ public class Publication {
         this.user = user;
         this.publishDate = publishDate; //Fijar la fecha de publicación es tarea de la parte de control.
         this.comments=new DynamicArray<>();
+        this.users=new AVLTree<>();
     }
 
     //Edit content
@@ -54,8 +56,16 @@ public class Publication {
         return comments;
     }
 
-    public void giveAnUp(){
-        nUps++;
+    public void toggleAnUp(User user){
+        if(!this.users.contains(user)) {
+            this.users.insert(user);
+            nUps++;
+        }else {
+            this.users.remove(user);
+            nUps--;
+        }
+
+
     }
 
     public void removeUp(){

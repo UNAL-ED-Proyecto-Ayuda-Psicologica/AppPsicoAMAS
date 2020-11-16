@@ -2,14 +2,14 @@ package Pruebas;
 
 import DataStructures.DoublyLinkedList;
 import DataStructures.DynamicArray;
-import DataStructures.Queue;
-import DataStructures.Stack;
+import DataStructures.PriorityQueue;
+import DataStructures.*;
 import PsicObj.*;
 
 public class DataBase {
     public static DoublyLinkedList<User> listadeusuarios = new DoublyLinkedList<>();
     public static DoublyLinkedList<String> listanombredeusuarios = new DoublyLinkedList<>();
-    public static Queue<Panic> botonesDePanico = new Queue<>();
+    public static Queue<Panic> botonesDePanico = new PriorityQueue<>();
     public static DynamicArray<Publication> posts = new DynamicArray<>();
     //public static Stack<Publication> auxPosts = new Stack<>();
 
