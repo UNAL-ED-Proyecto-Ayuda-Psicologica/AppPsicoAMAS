@@ -94,11 +94,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public int validarUsuario(String usuario, String contraseña) {
-
         Psico usuarioEntrante = new Psico("nombre génerico", usuario, contraseña,null);
-        int index = DataBase.listadeusuarios.getIndex(usuarioEntrante);
-        User user = DataBase.listadeusuarios.getK(index);
-        if (index >= 0 /*&& DataBase.listadeusuarios.getK(index).equals(usuarioEntrante)*/) {
+        boolean exists = DataBase.listadeusuarios.contains(usuarioEntrante);
+        User user = DataBase.listadeusuarios.getElement(usuarioEntrante);
+        if (exists/*&& DataBase.listadeusuarios.getK(index).equals(usuarioEntrante)*/) {
             if(user instanceof NoPsico){
                 Singleton.setCurrentUserN((NoPsico) user);
                 return 1;

@@ -180,8 +180,8 @@ public abstract class OnSessionActivity extends AppCompatActivity {
 
 
     public void deleteAccount(View view){
-        DataBase.listadeusuarios.delete(getCurrentUser());
-        DataBase.listanombredeusuarios.delete(getCurrentUser().getUsuario());
+        DataBase.listadeusuarios.remove(getCurrentUser());
+        DataBase.listanombredeusuarios.remove(getCurrentUser().getUsuario());
         Toast.makeText(OnSessionActivity.this, "Has eliminado tu cuenta con éxito!", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(OnSessionActivity.this, MainActivity.class));
     }

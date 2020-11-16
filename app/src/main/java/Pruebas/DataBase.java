@@ -1,5 +1,6 @@
 package Pruebas;
 
+import DataStructures.AVLTree;
 import DataStructures.DoublyLinkedList;
 import DataStructures.DynamicArray;
 import DataStructures.PriorityQueue;
@@ -7,8 +8,8 @@ import DataStructures.*;
 import PsicObj.*;
 
 public class DataBase {
-    public static DoublyLinkedList<User> listadeusuarios = new DoublyLinkedList<>();
-    public static DoublyLinkedList<String> listanombredeusuarios = new DoublyLinkedList<>();
+    public static AVLTree<User> listadeusuarios = new AVLTree<>();
+    public static AVLTree<String> listanombredeusuarios = new AVLTree<>();
     public static Queue<Panic> botonesDePanico = new PriorityQueue<>();
     public static DynamicArray<Publication> posts = new DynamicArray<>();
     //public static Stack<Publication> auxPosts = new Stack<>();
