@@ -43,10 +43,6 @@ public class NoPsico extends User{
         return panic;
     }
 
-    @Override
-    public int compareTo(User o) {
-        return (this.usuario.compareTo(o.usuario)+this.contraseña.compareTo(o.contraseña));
-    }
 
     public void solvePanic() {
         this.panic=null;

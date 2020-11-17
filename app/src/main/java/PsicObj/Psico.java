@@ -31,9 +31,4 @@ public class Psico extends User {
         sb.append('}');
         return sb.toString();
     }
-
-    @Override
-    public int compareTo(User o) {
-        return (this.usuario.compareTo(o.usuario)+this.contraseña.compareTo(o.contraseña));
-    }
 }

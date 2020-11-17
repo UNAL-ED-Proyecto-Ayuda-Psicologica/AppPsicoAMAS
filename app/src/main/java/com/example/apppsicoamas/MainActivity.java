@@ -95,9 +95,9 @@ public class MainActivity extends AppCompatActivity {
 
     public int validarUsuario(String usuario, String contraseña) {
         Psico usuarioEntrante = new Psico("nombre génerico", usuario, contraseña,null);
-        boolean exists = DataBase.listadeusuarios.contains(usuarioEntrante);
+        //boolean exists = DataBase.listadeusuarios.contains(usuarioEntrante);
         User user = DataBase.listadeusuarios.getElement(usuarioEntrante);
-        if (exists/*&& DataBase.listadeusuarios.getK(index).equals(usuarioEntrante)*/) {
+        if (user!=null /*&& usuarioEntrante.getUsuario().equals(usuario)*/ && user.validarContraseña(contraseña)) {
             if(user instanceof NoPsico){
                 Singleton.setCurrentUserN((NoPsico) user);
                 return 1;

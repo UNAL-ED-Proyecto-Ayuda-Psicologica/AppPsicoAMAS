@@ -162,7 +162,7 @@ public class OnSessionActivityN extends OnSessionActivity /*AppCompatActivity*/ 
                 else if(prio3.isChecked()) prio = 3;
                 m_Text[0] = input.getText().toString();
                 Singleton.getCurrentUserN().panicButton(DataBase.botonesDePanico, m_Text[0],prio);
-                if(DataBase.botonesDePanico.length()>prevlenght) Toast.makeText(OnSessionActivityN.this,"Mensaje enviado con exito"+prio,Toast.LENGTH_LONG).show();
+                if(DataBase.botonesDePanico.length()>prevlenght) Toast.makeText(OnSessionActivityN.this,"Mensaje enviado con exito",Toast.LENGTH_LONG).show();
                 else Toast.makeText(OnSessionActivityN.this,"Ups, pasó un error, tal vez ya enviaste tu mensaje",Toast.LENGTH_LONG).show();
             }
         });

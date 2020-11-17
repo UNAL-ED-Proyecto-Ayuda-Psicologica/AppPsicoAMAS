@@ -44,6 +44,10 @@ public abstract class User implements Comparable<User>{
         return this.usuario;
     }
 
+    public boolean validarContraseña(String pass){
+        return this.contraseña.equals(pass);
+    }
+
     public Publication writePost(DynamicArray<Publication> stackP, String content, Date date) {
         Publication newPost = new Publication(content, this, date);
         stackP.insert(newPost);
@@ -91,4 +95,9 @@ public abstract class User implements Comparable<User>{
         }
     }
 
+    @Override
+    public int compareTo(User o) {
+        //if(this.usuario.compareTo(o.usuario) == 0) return this.contraseña.compareTo(o.contraseña);
+        /*else*/ return (this.usuario.compareTo(o.usuario));
+    }
 }
