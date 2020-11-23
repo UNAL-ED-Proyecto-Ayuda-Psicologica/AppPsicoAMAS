@@ -49,7 +49,7 @@ public abstract class User implements Comparable<User>{
     }
 
     public Publication writePost(DynamicArray<Publication> stackP, String content, Date date) {
-        Publication newPost = new Publication(content, this, date);
+        Publication newPost = new Publication(content, this);
         stackP.insert(newPost);
         this.posts.insert(newPost);
         return newPost;

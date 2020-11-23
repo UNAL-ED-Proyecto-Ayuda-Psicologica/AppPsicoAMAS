@@ -1,12 +1,15 @@
 package com.example.apppsicoamas;
 
 import androidx.appcompat.app.*;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -14,14 +17,19 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Date;
 
+import DataStructures.DoublyLinkedList;
 import Pruebas.DataBase;
 import Pruebas.Singleton;
 import PsicObj.*;
 
 public class OnSessionActivityN extends OnSessionActivity /*AppCompatActivity*/ {
     private EditText writingPost;
+    DoublyLinkedList<Publication> listadeposts = new DoublyLinkedList<Publication>();
+    RecyclerView recycler;
+
 /*
     private int commentsIndex;
     private int postsIndex;
@@ -61,6 +69,17 @@ public class OnSessionActivityN extends OnSessionActivity /*AppCompatActivity*/ 
             }
         }
 
+        recycler = findViewById(R.id.recyclerPosts);
+        recycler.setLayoutManager(new LinearLayoutManager(this));
+
+        for(int i = 0; i<=50; i++){
+            listadeposts.insert(new Publication(("Un sensor es todo aquello que tiene una propiedad sensible a una magnitud del medio," +
+                    " y al variar esta magnitud también varia con cierta intensidad la propiedad, es decir, manifiesta la presencia de dicha magnitud, " +
+                    "y también su medida. Post número: " + i), new NoPsico("mi nombre " + i, "mi usuario"+ i,"contraseña","coreo@unal.edu.co")));
+        }
+
+        AdapterPosts adapter = new AdapterPosts(listadeposts);
+        recycler.setAdapter(adapter);
     }
     /*
     public void setPosts(boolean firstTime){

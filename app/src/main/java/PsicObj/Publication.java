@@ -6,7 +6,7 @@ import java.util.Date;
 import DataStructures.*;
 import DataStructures.Stack;
 
-public class Publication {
+public class Publication implements Comparable {
     String content;
     int nUps;
     AVLTree<User> users;
@@ -14,11 +14,11 @@ public class Publication {
     Date publishDate;
     DynamicArray<Publication> comments;
 
-    public Publication(String content, User user, Date publishDate) {
+    public Publication(String content, User user) {
         this.content = content;
         this.nUps = nUps;
         this.user = user;
-        this.publishDate = publishDate; //Fijar la fecha de publicación es tarea de la parte de control.
+        //this.publishDate = publishDate; //Fijar la fecha de publicación es tarea de la parte de control.
         this.comments=new DynamicArray<>();
         this.users=new AVLTree<>();
     }
@@ -49,7 +49,7 @@ public class Publication {
     }
 
     public void addComment(String commentContent, User user, Date date){
-        comments.insert(new Publication(commentContent, user,date));
+        comments.insert(new Publication(commentContent, user));
     }
 
     public DynamicArray<Publication> getComments() {
@@ -70,5 +70,10 @@ public class Publication {
 
     public void removeUp(){
         nUps--;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }
