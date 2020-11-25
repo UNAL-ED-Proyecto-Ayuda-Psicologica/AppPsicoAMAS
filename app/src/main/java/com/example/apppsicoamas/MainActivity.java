@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         ingresar = findViewById(R.id.bIngresar);
         bienvenida = findViewById(R.id.tvBienvenida);
         nuevoRegistro = findViewById(R.id.bNuevoRegistro);
+        DataBase.agregarUsuario(new NoPsico("Luz unu","luzalejandra","veramorales", "laveramo@unal.edu.co"));
 
         InputStream is=this.getResources().openRawResource(R.raw.nopsico);
         BufferedReader br = new BufferedReader(new InputStreamReader(is));

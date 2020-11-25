@@ -71,14 +71,7 @@ public class OnSessionActivityN extends OnSessionActivity /*AppCompatActivity*/ 
 
         recycler = findViewById(R.id.recyclerPosts);
         recycler.setLayoutManager(new LinearLayoutManager(this));
-
-        for(int i = 0; i<=50; i++){
-            listadeposts.insert(new Publication(("Un sensor es todo aquello que tiene una propiedad sensible a una magnitud del medio," +
-                    " y al variar esta magnitud también varia con cierta intensidad la propiedad, es decir, manifiesta la presencia de dicha magnitud, " +
-                    "y también su medida. Post número: " + i), new NoPsico("mi nombre " + i, "mi usuario"+ i,"contraseña","coreo@unal.edu.co")));
-        }
-
-        AdapterPosts adapter = new AdapterPosts(listadeposts);
+        AdapterPosts adapter = new AdapterPosts(DataBase.posts);
         recycler.setAdapter(adapter);
     }
     /*

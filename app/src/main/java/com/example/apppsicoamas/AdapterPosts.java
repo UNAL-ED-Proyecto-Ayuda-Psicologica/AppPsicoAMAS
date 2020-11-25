@@ -13,13 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.w3c.dom.Text;
 
 import DataStructures.DoublyLinkedList;
+import DataStructures.DynamicArray;
 import PsicObj.Publication;
 
 public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.ViewHolderPosts> {
-    DoublyLinkedList<Publication> listaPosts;
+    DynamicArray<Publication> arregloPosts;
 
-    public AdapterPosts(DoublyLinkedList<Publication> listaPosts) {
-        this.listaPosts = listaPosts;
+    public AdapterPosts(DynamicArray<Publication> listaPosts) {
+        this.arregloPosts = listaPosts;
     }
 
     @NonNull
@@ -31,12 +32,12 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.ViewHolderPo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderPosts holder, int position) {
-        holder.asignarDatos(listaPosts.getK(position));
+        holder.asignarDatos(arregloPosts.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return listaPosts.length();
+        return arregloPosts.length();
     }
 
     public class ViewHolderPosts extends RecyclerView.ViewHolder {
@@ -58,8 +59,8 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.ViewHolderPo
         }
 
         public void asignarDatos(Publication post){
-            nombre.setText(post.getUser().getUsuario());
-            usuario.setText(post.getUser().getNombre());
+            nombre.setText(post.getUser().getNombre());
+            usuario.setText("@" +post.getUser().getUsuario());
             contenidoPost.setText(post.getContent());
 
         }

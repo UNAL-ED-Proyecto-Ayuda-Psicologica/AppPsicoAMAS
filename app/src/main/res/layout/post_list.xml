@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/totalPost"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
     android:orientation="vertical">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -59,7 +60,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:orientation="vertical">
@@ -85,6 +86,7 @@
                     android:layout_height="wrap_content"
                     android:text="/heyitsme"
                     android:textColor="@color/colorPrimaryLight" />
+
             </LinearLayout>
 
             <TextView
@@ -92,7 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="HEY HEY HEY PERO QUÉ PASA CHAVALES, TODO BIEN?, TODO CORRECTO? Y YO QUE ME ALEGRO JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYKKKKKKKKKKKKK"
+                android:text="k"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         </LinearLayout>
@@ -101,7 +103,7 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="match_parent"
+        android:layout_width="500dp"
         android:layout_height="1dp"
         android:background="@color/colorPrimaryLight" />
 
