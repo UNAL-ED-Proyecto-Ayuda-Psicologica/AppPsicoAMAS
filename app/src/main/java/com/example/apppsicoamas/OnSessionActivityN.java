@@ -27,8 +27,8 @@ import PsicObj.*;
 
 public class OnSessionActivityN extends OnSessionActivity /*AppCompatActivity*/ {
     private EditText writingPost;
-    DoublyLinkedList<Publication> listadeposts = new DoublyLinkedList<Publication>();
-    RecyclerView recycler;
+    private RecyclerView recycler;
+    private AdapterPosts adapter;
 
 /*
     private int commentsIndex;
@@ -71,8 +71,58 @@ public class OnSessionActivityN extends OnSessionActivity /*AppCompatActivity*/ 
 
         recycler = findViewById(R.id.recyclerPosts);
         recycler.setLayoutManager(new LinearLayoutManager(this));
-        AdapterPosts adapter = new AdapterPosts(DataBase.posts);
+        adapter = new AdapterPosts(DataBase.posts);
         recycler.setAdapter(adapter);
+        adapter.setOnItemClickListener(new AdapterPosts.OnItemClickListener() {
+            @Override
+            public void onItemClickListener(int position) {
+                Intent i = new Intent(OnSessionActivityN.this, CommentsActivity.class);
+                i.putExtra("position", position);
+                startActivity(i);
+            }
+
+            @Override
+            public void onCommentClickListener(int position) {
+                try {
+                    final Publication post = DataBase.posts.get(postsIndex);
+                    final int prevlenght = post.getComments().length();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(OnSessionActivityN.this);
+                    builder.setTitle("¿Qué opinas?");
+                    final String[] m_Text = {" "};
+// Set up the input
+                    final EditText input = new EditText(OnSessionActivityN.this);
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                    input.setInputType(InputType.TYPE_CLASS_TEXT);
+                    builder.setView(input);
+
+// Set up the buttons
+                    builder.setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            m_Text[0] = input.getText().toString();
+                            post.addComment(m_Text[0], getCurrentUser(), new Date());
+                            if (post.getComments().length() > prevlenght)
+                                Toast.makeText(OnSessionActivityN.this, "Mensaje enviado con exito", Toast.LENGTH_LONG).show();
+                            else
+                                Toast.makeText(OnSessionActivityN.this, "Ups, pasó un error", Toast.LENGTH_LONG).show();
+                            update();
+                            //startActivity(new Intent(OnSessionActivity.this, this.getClass()));
+
+                        }
+                    });
+                    builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+
+                    builder.show();
+                }catch (NullPointerException e){
+                    Toast.makeText(OnSessionActivityN.this,"Error",Toast.LENGTH_LONG);
+                }
+            }
+        });
     }
     /*
     public void setPosts(boolean firstTime){
