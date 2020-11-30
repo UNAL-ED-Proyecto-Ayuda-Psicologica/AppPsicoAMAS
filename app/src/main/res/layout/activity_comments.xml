@@ -51,6 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|center_horizontal"
                     android:background="@android:color/transparent"
+                    android:onClick="makeComment"
                     android:tint="@color/colorPrimary"
                     app:srcCompat="@android:drawable/stat_notify_chat" />
             </LinearLayout>

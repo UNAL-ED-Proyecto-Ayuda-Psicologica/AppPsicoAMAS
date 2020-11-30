@@ -1,267 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".OnSessionActivityP">
 
-    <Button
-        android:id="@+id/bSignOff"
-        style="@style/Widget.AppCompat.Button.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
-        android:onClick="signOff"
-        android:text="Cerrar Sesión"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.235"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tvPanic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Ese usuario necesita ayuda"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ScrollView
-        android:id="@+id/panicView"
-        android:layout_width="350dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPanic">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvSituation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Hola chicas y chicos! Estoy buscando a alguien que sepa coser y pueda armarme unas camisetas, los moldes ya están cortados. Gracias por su ayuda, cualquier up es una décima más en el PAPA. Adjunto meme para no morir en el olvido."
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
-        </LinearLayout>
-    </ScrollView>
-
-    <ScrollView
-        android:id="@+id/postView"
-        android:layout_width="270dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/panicView">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/postText"
-                android:layout_width="270dp"
-                android:layout_height="wrap_content"
-                android:text="Hola a todos.  Viendo el autobús tan hp que tiene puesto el Getafe contra el Barça y el espectáculo de arbitraje sumado al pésimo partido del Barça, se me ocurrió preguntarles algo ligeramente relacionado. Usted qué opina acerca de la Independencia de Cataluña? Debatan en comentarios. Un saludo." />
-        </LinearLayout>
-    </ScrollView>
-
     <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="270dp"
-        android:layout_height="35dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postView">
-
-        <Button
-            android:id="@+id/prevPost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="prevPost"
-            android:text="Anterior"
-            android:textSize="12sp" />
-
-        <Button
-            android:id="@+id/nextPost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="nextPost"
-            android:text="Siguiente"
-            android:textSize="12sp" />
-
-        <Button
-            android:id="@+id/makeComment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="makeComment"
-            android:text="Comentar"
-            android:textSize="12sp" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/publications"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/publicaciones"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toTopOf="@+id/postView"
-        app:layout_constraintStart_toStartOf="@+id/postView" />
+        android:orientation="vertical"
+        android:paddingBottom="5dp">
 
-    <TextView
-        android:id="@+id/comments"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/comentarios"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintStart_toStartOf="@+id/postView"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
-    <ScrollView
-        android:id="@+id/commentView"
-        android:layout_width="270dp"
-        android:layout_height="61dp"
-        app:layout_constraintStart_toStartOf="@+id/comments"
-        app:layout_constraintTop_toBottomOf="@+id/comments">
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tvPanic"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:text="Ese usuario necesita ayuda" />
 
-            <TextView
-                android:id="@+id/commentText"
+        <ScrollView
+            android:id="@+id/panicView"
+            android:layout_width="350dp"
+            android:layout_height="140dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="La derrota del Inter estaba cantada, Kolarov y D'ambrosio no están a la altura de Bastoni ni de Skriniar. Por otro lado la Juve se está volviendo muy Cristiano dependiente, no sé si este año puedan retener el título. " />
-        </LinearLayout>
-    </ScrollView>
+                android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="270dp"
-        android:layout_height="35dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/commentView">
-
-        <Button
-            android:id="@+id/prevComment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="prevComment"
-            android:text="Anterior" />
+                <TextView
+                    android:id="@+id/tvSituation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="Hola chicas y chicos! Estoy buscando a alguien que sepa coser y pueda armarme unas camisetas, los moldes ya están cortados. Gracias por su ayuda, cualquier up es una décima más en el PAPA. Adjunto meme para no morir en el olvido."
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            </LinearLayout>
+        </ScrollView>
 
         <Button
-            android:id="@+id/nextComment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="nextComment"
-            android:text="Siguiente" />
+            android:id="@+id/button"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/custom_button"
+            android:onClick="attendPanic"
+            android:text="Atender"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@android:color/primary_text_dark" />
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:background="@drawable/custom_button"
-        android:onClick="attendPanic"
-        android:text="Atender"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@android:color/primary_text_dark"
-        app:layout_constraintEnd_toEndOf="@+id/panicView"
-        app:layout_constraintTop_toBottomOf="@+id/panicView" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerPosts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-    <Button
-        android:id="@+id/bDeletePost"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="37dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:onClick="deletePost"
-        android:text="X"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        app:layout_constraintBottom_toBottomOf="@+id/postView"
-        app:layout_constraintStart_toEndOf="@+id/postView"
-        app:layout_constraintTop_toTopOf="@+id/postView" />
-
-    <Button
-        android:id="@+id/bDeleteComment"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="37dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:onClick="deleteComment"
-        android:text="X"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        app:layout_constraintBottom_toBottomOf="@+id/commentView"
-        app:layout_constraintStart_toEndOf="@+id/commentView"
-        app:layout_constraintTop_toTopOf="@+id/commentView" />
-
-    <Button
-        android:id="@+id/button2"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
-        android:capitalize="none"
-        android:onClick="deleteAccount"
-        android:text="Eliminar mi cuenta"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.23"
-        app:layout_constraintStart_toEndOf="@+id/bSignOff" />
-
-    <Button
-        android:id="@+id/bUp"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="37dp"
-        android:layout_height="38dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:onClick="toggleUpPost"
-        android:text="Up"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        app:layout_constraintBottom_toBottomOf="@+id/postView"
-        app:layout_constraintEnd_toStartOf="@+id/postView"
-        app:layout_constraintTop_toTopOf="@+id/postView" />
-
-    <Button
-        android:id="@+id/bcommentUp"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="37dp"
-        android:layout_height="38dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:onClick="toggleUpComment"
-        android:text="Up"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        app:layout_constraintBottom_toBottomOf="@+id/commentView"
-        app:layout_constraintEnd_toStartOf="@+id/commentView"
-        app:layout_constraintTop_toTopOf="@+id/commentView" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

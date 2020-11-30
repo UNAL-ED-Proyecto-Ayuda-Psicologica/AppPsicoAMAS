@@ -14,7 +14,7 @@ import DataStructures.DynamicArray;
 import PsicObj.Publication;
 
 public class AdapterComments extends RecyclerView.Adapter<AdapterComments.ViewHolderComments> {
-    DynamicArray<Publication> arregloComentarios;
+    private DynamicArray<Publication> arregloComentarios;
 
     public AdapterComments(DynamicArray<Publication> listaComentarios) {
         this.arregloComentarios = listaComentarios;
@@ -23,7 +23,7 @@ public class AdapterComments extends RecyclerView.Adapter<AdapterComments.ViewHo
     @NonNull
     @Override
     public AdapterComments.ViewHolderComments onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.comment_list,null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.comment_list,parent, false);
         return new AdapterComments.ViewHolderComments(view);
     }
 
@@ -52,8 +52,8 @@ public class AdapterComments extends RecyclerView.Adapter<AdapterComments.ViewHo
         }
 
         public void asignarDatos(Publication comment){
-            nombre.setText(comment.getUser().getUsuario());
-            usuario.setText(comment.getUser().getUsuario());
+            nombre.setText(comment.getUser().getNombre());
+            usuario.setText("@" + comment.getUser().getUsuario());
             contenido.setText(comment.getContent());
 
         }
