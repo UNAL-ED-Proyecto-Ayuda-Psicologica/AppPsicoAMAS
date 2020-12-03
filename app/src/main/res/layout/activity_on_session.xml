@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,31 +7,57 @@
     android:orientation="vertical"
     tools:context=".OnSessionActivityN">
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="panicButton"
-        android:text="Button" />
-
-    <EditText
-        android:id="@+id/writingPost"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/escribir"
-        android:inputType="textPersonName" />
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="makePost"
-        app:srcCompat="@android:drawable/ic_menu_send" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerPosts"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="5dp" />
-</LinearLayout>
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/writingPost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="@string/escribir"
+                android:inputType="textMultiLine" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:onClick="makePost"
+                android:tint="@color/colorAccent"
+                app:srcCompat="@android:drawable/ic_menu_send" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerPosts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp" />
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fbPanic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:clickable="true"
+        android:onClick="panicButton"
+        app:backgroundTint="#DD0D0D"
+        app:srcCompat="@android:drawable/ic_dialog_alert" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

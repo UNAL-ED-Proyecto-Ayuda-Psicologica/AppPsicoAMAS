@@ -101,6 +101,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.ViewHolderPo
             nombre.setText(post.getUser().getNombre());
             usuario.setText("@" +post.getUser().getUsuario());
             contenidoPost.setText(post.getContent());
+            foto.setImageResource(R.drawable.avatar); // comentar esta línea si salen errores al ejecutar en el emulador (en celular sí funciona)
         }
     }
 }
