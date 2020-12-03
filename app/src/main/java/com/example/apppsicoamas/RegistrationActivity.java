@@ -18,6 +18,7 @@ import PsicObj.Psico;
 
 public class RegistrationActivity extends AppCompatActivity {
 
+    private EditText nuevoNombre;
     private EditText nuevoUsuario;
     private EditText nuevaContraseña;
     private EditText nuevoCorreo;
@@ -29,6 +30,7 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
+        nuevoNombre = findViewById(R.id.etRegName);
         nuevoUsuario = findViewById(R.id.etRegUsuario);
         nuevaContraseña = findViewById(R.id.etRegContraseña);
         nuevoCorreo = findViewById(R.id.etRegCorreo);
@@ -38,24 +40,17 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     public void nuevoRegistro(View view){
+        String nombre = nuevoNombre.getText().toString();
         String usuario = nuevoUsuario.getText().toString();
         String contraseña = nuevaContraseña.getText().toString();
         String correo = nuevoCorreo.getText().toString();
 
         if(validar(usuario, contraseña)){
             if(soyPsicologo.isChecked()){
-                DataBase.agregarUsuario(new Psico("nombre génerico", usuario, contraseña,correo));
-                /*String linea= null;<
-                OutputStream os=this.getResources().openRawResource(R.raw.psico);
-                //BufferedReader br = new BufferedReader(new InputStreamReader(is));
-                try {
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }*/
+                DataBase.agregarUsuario(new Psico(nombre, usuario, contraseña,correo));
             }
             else{
-                DataBase.agregarUsuario(new NoPsico("nombre génerico", usuario, contraseña,correo));
+                DataBase.agregarUsuario(new NoPsico(nombre, usuario, contraseña,correo));
             }
 
             Toast.makeText(RegistrationActivity.this, "Te acabas de registrar!",Toast.LENGTH_LONG).show();

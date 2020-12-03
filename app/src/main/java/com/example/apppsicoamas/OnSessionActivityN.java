@@ -57,7 +57,6 @@ public class OnSessionActivityN extends OnSessionActivity /*AppCompatActivity*/ 
                 builder.show();
             }
         }
-
         recycler = findViewById(R.id.recyclerPosts);
         recycler.setLayoutManager(new LinearLayoutManager(this));
         adapter = new AdapterPosts(DataBase.posts);

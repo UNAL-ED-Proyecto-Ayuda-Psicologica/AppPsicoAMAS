@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ public class CommentsActivity extends OnSessionActivity {
     private AdapterComments adapter;
     private TextView nombre;
     private TextView usuario;
+    private ImageView foto;
     private TextView contenidoPost;
     private Publication currentPost;
 
@@ -39,11 +41,13 @@ public class CommentsActivity extends OnSessionActivity {
 
         nombre = findViewById(R.id.tvNombre);
         usuario = findViewById(R.id.tvNombredeusuario);
+        foto = findViewById(R.id.ivFoto);
         contenidoPost = findViewById(R.id.tvContenidopost);
 
         nombre.setText(currentPost.getUser().getNombre());
         usuario.setText("@" + currentPost.getUser().getUsuario());
         contenidoPost.setText(currentPost.getContent());
+        foto.setImageResource(R.drawable.avatar);
 
         recycler = findViewById(R.id.recyclerComments);
         recycler.setLayoutManager(new LinearLayoutManager(this));
