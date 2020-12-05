@@ -33,6 +33,7 @@ public class OnSessionActivityN extends OnSessionActivity /*AppCompatActivity*/ 
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_session);
+        getSupportActionBar().setTitle("Inicio");
         writingPost=findViewById(R.id.writingPost);
 
         Panic p=Singleton.getCurrentUserN().getPanic();

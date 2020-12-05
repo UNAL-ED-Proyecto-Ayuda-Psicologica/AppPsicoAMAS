@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Comment;
+
 import java.util.Date;
 
 import Pruebas.DataBase;
@@ -30,13 +32,15 @@ public class CommentsActivity extends OnSessionActivity {
     private ImageView foto;
     private TextView contenidoPost;
     private Publication currentPost;
+    private int postPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comments);
+        getSupportActionBar().setTitle("Detalles de la publicación");
 
-        int postPosition = getIntent().getIntExtra("position",0);
+        postPosition = getIntent().getIntExtra("position",0);
         currentPost = DataBase.posts.get(postPosition);
 
         nombre = findViewById(R.id.tvNombre);
@@ -95,13 +99,27 @@ public class CommentsActivity extends OnSessionActivity {
         }
 
     }
+
     @Override
     public void update() {
-        startActivity(new Intent(CommentsActivity.this,CommentsActivity.class));
+        Intent i = new Intent(CommentsActivity.this,CommentsActivity.class);
+        i.putExtra("position",this.postPosition);
+        startActivity(i);
     }
 
     @Override
     public User getCurrentUser() {
         return Singleton.getCurrentUserN();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(Singleton.getCurrentUserN() != null){
+            startActivity(new Intent(CommentsActivity.this,OnSessionActivityN.class));
+        }else{
+            startActivity(new Intent(CommentsActivity.this,OnSessionActivityP.class));
+        }
+
+        super.onBackPressed();
     }
 }

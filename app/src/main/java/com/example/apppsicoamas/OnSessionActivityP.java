@@ -35,6 +35,7 @@ public class OnSessionActivityP extends OnSessionActivity /*AppCompatActivity*/ 
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_session_p);
+        getSupportActionBar().setTitle("Inicio");
         userView=findViewById(R.id.tvPanic);
         userSituation=findViewById(R.id.tvSituation);
 

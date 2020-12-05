@@ -187,5 +187,4 @@ public abstract class OnSessionActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
 }
