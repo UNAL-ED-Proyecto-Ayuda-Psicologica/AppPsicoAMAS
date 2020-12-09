@@ -29,6 +29,8 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.ViewHolderPo
     public interface OnItemClickListener{
         void onItemClickListener(int position);
         void onCommentClickListener(int position);
+        void onEditClickListener(int position);
+        void onUpClickListener(int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listen){
@@ -60,9 +62,11 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.ViewHolderPo
         public ImageView foto;
         public ImageButton up;
         public ImageButton comentar;
+        public ImageButton editar;
         public TextView nombre;
         public TextView usuario;
         public TextView contenidoPost;
+        public TextView ups;
 
         public ViewHolderPosts(@NonNull View itemView) {
             super(itemView);
@@ -72,6 +76,8 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.ViewHolderPo
             nombre = itemView.findViewById(R.id.tvNombre);
             usuario = itemView.findViewById(R.id.tvNombredeusuario);
             contenidoPost = itemView.findViewById(R.id.tvContenidopost);
+            editar = itemView.findViewById(R.id.ibEditar);
+            ups= itemView.findViewById(R.id.tvUps);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -95,12 +101,37 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.ViewHolderPo
                     }
                 }
             });
+            up.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            listener.onUpClickListener(position);
+                        }
+                    }
+                }
+            });
+
+            editar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            listener.onEditClickListener(position);
+                        }
+                    }
+                }
+            });
+
         }
 
         public void asignarDatos(Publication post){
             nombre.setText(post.getUser().getNombre());
             usuario.setText("@" +post.getUser().getUsuario());
             contenidoPost.setText(post.getContent());
+            ups.setText(post.getnUps()+" Ups");
             foto.setImageResource(R.drawable.avatar); // comentar esta línea si salen errores al ejecutar en el emulador (en celular sí funciona)
         }
     }

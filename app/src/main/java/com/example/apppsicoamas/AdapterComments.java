@@ -16,8 +16,19 @@ import PsicObj.Publication;
 public class AdapterComments extends RecyclerView.Adapter<AdapterComments.ViewHolderComments> {
     private DynamicArray<Publication> arregloComentarios;
 
+    private AdapterComments.OnItemClickListener listener;
+
+    public interface OnItemClickListener{
+        void onEditClickListener(int position);
+        void onUpClickListener(int position);
+    }
+
     public AdapterComments(DynamicArray<Publication> listaComentarios) {
         this.arregloComentarios = listaComentarios;
+    }
+
+    public void setOnItemClickListener(AdapterComments.OnItemClickListener listen){
+        this.listener = listen;
     }
 
     @NonNull
@@ -39,6 +50,7 @@ public class AdapterComments extends RecyclerView.Adapter<AdapterComments.ViewHo
 
     public class ViewHolderComments extends RecyclerView.ViewHolder {
         ImageButton up;
+        ImageButton editar;
         TextView nombre;
         TextView usuario;
         TextView contenido;
@@ -49,6 +61,30 @@ public class AdapterComments extends RecyclerView.Adapter<AdapterComments.ViewHo
             nombre = itemView.findViewById(R.id.tvNombreCom);
             usuario = itemView.findViewById(R.id.tvUsarioCom);
             contenido = itemView.findViewById(R.id.tvContenidoCom);
+            editar = itemView.findViewById(R.id.ibEditCom);
+            up.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            listener.onUpClickListener(position);
+                        }
+                    }
+                }
+            });
+
+            editar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            listener.onEditClickListener(position);
+                        }
+                    }
+                }
+            });
         }
 
         public void asignarDatos(Publication comment){

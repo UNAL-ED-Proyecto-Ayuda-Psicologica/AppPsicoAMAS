@@ -5,9 +5,13 @@ public class AVLTree<T extends Comparable<? super T>> {
         public T value;
         public AVLNode<T> leftSon;
         public AVLNode<T> rightSon;
+        public int maxHeight;
 
         public AVLNode(T value) {
             this.value = value;
+            this.maxHeight = 0;
+            this.leftSon = null;
+            this.rightSon = null;
         }
     }
 
@@ -33,7 +37,7 @@ public class AVLTree<T extends Comparable<? super T>> {
                 node.rightSon = this.insert(value, node.rightSon);
             }
             else {}
-            return node;
+            return balance(node);
         }
     }
 
@@ -56,7 +60,54 @@ public class AVLTree<T extends Comparable<? super T>> {
         }else {
             node = (node.leftSon != null) ? node.leftSon : node.rightSon;
         }
+        return balance(node);
+    }
+
+    private AVLNode<T> balance(AVLNode<T> node){
+        if(node == null) return null;
+        if(height(node.leftSon)-height(node.rightSon) > 1){
+            if(height(node.leftSon.leftSon)>=height(node.leftSon.rightSon)) node=simpleRotationL(node);
+            else node=doubleRotationLR(node);
+        }else if(height(node.rightSon)-height(node.leftSon) > 1){
+            if(height(node.rightSon.rightSon)>=height(node.rightSon.leftSon)) node=simpleRotationR(node);
+            else node=doubleRotationRL(node);
+
+        }
+        node.maxHeight=Math.max(height(node.leftSon),height(node.rightSon))+1;
         return node;
+    }
+
+    private int height(AVLNode<T> node){
+        if(node == null) return -1;
+        else return node.maxHeight;
+    }
+
+    private AVLNode<T> simpleRotationL(AVLNode<T> node){
+        AVLNode<T> aux = node.leftSon;
+        node.leftSon = aux.rightSon;
+        aux.rightSon = node;
+        node.maxHeight= Math.max(height(node.leftSon),height(node.rightSon))+1;
+        aux.maxHeight= Math.max(height(aux.leftSon),height(node))+1;
+        return aux;
+    }
+
+    private AVLNode<T> simpleRotationR(AVLNode<T> node){
+        AVLNode<T> aux = node.rightSon;
+        node.rightSon = aux.leftSon;
+        aux.leftSon = node;
+        node.maxHeight= Math.max(height(node.leftSon),height(node.rightSon))+1;
+        aux.maxHeight = Math.max(height(aux.rightSon),height(node))+1;
+        return aux;
+    }
+
+    private AVLNode<T> doubleRotationLR(AVLNode<T> node){
+        node.leftSon=simpleRotationR(node.leftSon);
+        return simpleRotationL(node);
+    }
+
+    private AVLNode<T> doubleRotationRL(AVLNode<T> node){
+        node.rightSon=simpleRotationL(node.rightSon);
+        return simpleRotationR(node);
     }
 
     public T findMin(){

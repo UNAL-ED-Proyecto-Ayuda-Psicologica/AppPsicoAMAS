@@ -67,10 +67,6 @@ public abstract class User implements Comparable<User>{
         return post;
     }
 
-    public Publication commentPost(Publication post, String content, Date date) {
-        post.addComment(content, this, date);
-        return post;
-    }
 
     public void deletePost(int index) {
         posts.deleteIndex(index);
@@ -99,5 +95,13 @@ public abstract class User implements Comparable<User>{
     public int compareTo(User o) {
         //if(this.usuario.compareTo(o.usuario) == 0) return this.contraseña.compareTo(o.contraseña);
         /*else*/ return (this.usuario.compareTo(o.usuario));
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre=nombre;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
 }

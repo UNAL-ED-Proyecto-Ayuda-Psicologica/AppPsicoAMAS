@@ -151,16 +151,62 @@ public abstract class OnSessionActivity extends AppCompatActivity {
         }
     }
 
-/*    public void toggleUpPost(View view){
+   public void toggleUpPost(int postsIndex, final OnSessionActivity activity){
         Publication post=DataBase.posts.get(postsIndex);
         if(post!=null) {
             post = getCurrentUser().toggleUp(post);
-            setPosts(false);
+            update();
         }else{
-            Toast.makeText(OnSessionActivity.this,"No hay ningun post",Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity,"No hay ningun post",Toast.LENGTH_SHORT).show();
         }
     }
 
+    public void editPost(int postsIndex, final OnSessionActivity activity){
+        final Publication post = DataBase.posts.get(postsIndex);
+        if(post!=null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            builder.setTitle("Edición");
+            final String[] m_Text = {" "};
+            final String prevContent=post.getContent();
+// Set up the input
+            final EditText input = new EditText(activity);
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+            input.setInputType(InputType.TYPE_CLASS_TEXT);
+            builder.setView(input);
+            input.setText(prevContent);
+
+
+// Set up the buttons
+            builder.setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    m_Text[0] = input.getText().toString();
+                    try {
+                        getCurrentUser().modifyPost(post, m_Text[0]);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    if (!post.getContent().equals(prevContent))
+                        Toast.makeText(activity, "Post editado con exito", Toast.LENGTH_LONG).show();
+                    else
+                        Toast.makeText(activity, "No hubo cambios", Toast.LENGTH_LONG).show();
+                    update();
+
+                }
+            });
+            builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+
+            builder.show();
+        }else{
+            Toast.makeText(activity,"No hay ningun post",Toast.LENGTH_SHORT).show();
+        }
+    }
+/*
     public void toggleUpComment(View view){
         Publication comment=DataBase.posts.get(postsIndex).getComments().get(commentsIndex);
         if(comment!=null){
@@ -183,6 +229,8 @@ public abstract class OnSessionActivity extends AppCompatActivity {
             signOff();
         } else if (id == R.id.itEliminarCuenta) {
             deleteAccount();
+        } else if (id == R.id.itEditarUsuario){
+            startActivity(new Intent(OnSessionActivity.this, EditUserActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

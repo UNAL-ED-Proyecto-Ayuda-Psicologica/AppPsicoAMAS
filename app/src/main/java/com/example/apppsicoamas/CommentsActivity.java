@@ -21,6 +21,7 @@ import java.util.Date;
 
 import Pruebas.DataBase;
 import Pruebas.Singleton;
+import PsicObj.NoPsico;
 import PsicObj.Publication;
 import PsicObj.User;
 
@@ -58,6 +59,18 @@ public class CommentsActivity extends OnSessionActivity {
 
         adapter = new AdapterComments(DataBase.posts.get(postPosition).getComments());
         recycler.setAdapter(adapter);
+
+        adapter.setOnItemClickListener(new AdapterComments.OnItemClickListener() {
+            @Override
+            public void onEditClickListener(int position) {
+                editComment(position, CommentsActivity.this);
+            }
+
+            @Override
+            public void onUpClickListener(int position) {
+                toggleUpComment(position, CommentsActivity.this);
+            }
+        });
     }
 
     public void makeComment(View view){
@@ -109,17 +122,74 @@ public class CommentsActivity extends OnSessionActivity {
 
     @Override
     public User getCurrentUser() {
+        if(Singleton.getCurrentUserP()==null)
         return Singleton.getCurrentUserN();
+        else return Singleton.getCurrentUserP();
     }
 
     @Override
     public void onBackPressed() {
-        if(Singleton.getCurrentUserN() != null){
+        if(getCurrentUser() instanceof NoPsico){
             startActivity(new Intent(CommentsActivity.this,OnSessionActivityN.class));
         }else{
             startActivity(new Intent(CommentsActivity.this,OnSessionActivityP.class));
         }
 
         super.onBackPressed();
+    }
+    public void toggleUpComment(int position, final OnSessionActivity activity){
+        Publication comment=DataBase.posts.get(postPosition).getComments().get(position);
+        if(comment!=null) {
+            comment = getCurrentUser().toggleUp(comment);
+            update();
+        }else{
+            Toast.makeText(activity,"No hay ningun post",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void editComment(int position, final OnSessionActivity activity){
+        final Publication comment = DataBase.posts.get(postPosition).getComments().get(position);
+        if(comment!=null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            builder.setTitle("Edición");
+            final String[] m_Text = {" "};
+            final String prevContent=comment.getContent();
+// Set up the input
+            final EditText input = new EditText(activity);
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+            input.setInputType(InputType.TYPE_CLASS_TEXT);
+            builder.setView(input);
+            input.setText(prevContent);
+
+
+// Set up the buttons
+            builder.setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    m_Text[0] = input.getText().toString();
+                    try {
+                        getCurrentUser().modifyPost(comment, m_Text[0]);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    if (!comment.getContent().equals(prevContent))
+                        Toast.makeText(activity, "Post editado con exito", Toast.LENGTH_LONG).show();
+                    else
+                        Toast.makeText(activity, "No hubo cambios", Toast.LENGTH_LONG).show();
+                    update();
+
+                }
+            });
+            builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+
+            builder.show();
+        }else{
+            Toast.makeText(activity,"No hay ningun post",Toast.LENGTH_SHORT).show();
+        }
     }
 }

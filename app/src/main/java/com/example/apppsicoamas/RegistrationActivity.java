@@ -10,8 +10,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.io.*;
-
 import Pruebas.DataBase;
 import PsicObj.NoPsico;
 import PsicObj.Psico;
@@ -30,10 +28,10 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        nuevoNombre = findViewById(R.id.etRegName);
+        nuevoNombre = findViewById(R.id.etEditName);
         nuevoUsuario = findViewById(R.id.etRegUsuario);
-        nuevaContraseña = findViewById(R.id.etRegContraseña);
-        nuevoCorreo = findViewById(R.id.etRegCorreo);
+        nuevaContraseña = findViewById(R.id.etEditContraseña);
+        nuevoCorreo = findViewById(R.id.etEditCorreo);
         registrarse = findViewById(R.id.bRegistrarse);
         soyPsicologo = findViewById(R.id.cbPsicologo);
 

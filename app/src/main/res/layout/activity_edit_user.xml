@@ -4,45 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegistrationActivity">
-
-    <EditText
-        android:id="@+id/etRegUsuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Ingresa un nuevo usuario"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEditName"
-        app:layout_constraintVertical_bias="0.056" />
+    tools:context=".EditUserActivity">
 
     <EditText
         android:id="@+id/etEditContraseña"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Ingresa una contraseña"
+        android:hint="Nueva contraseña"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etRegUsuario"
-        app:layout_constraintVertical_bias="0.079" />
+        app:layout_constraintTop_toBottomOf="@+id/etEditName"
+        app:layout_constraintVertical_bias="0.15" />
 
     <Button
-        android:id="@+id/bRegistrarse"
+        android:id="@+id/bGuardar"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="128dp"
         android:background="@drawable/custom_button"
-        android:onClick="nuevoRegistro"
-        android:text="@string/registrar"
+        android:onClick="save"
+        android:text="Guardar"
         android:textAllCaps="false"
         android:textColor="@android:color/primary_text_dark"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -52,16 +38,23 @@
         app:layout_constraintTop_toBottomOf="@+id/etEditCorreo"
         app:layout_constraintVertical_bias="1.0" />
 
-    <CheckBox
-        android:id="@+id/cbPsicologo"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/bCancelar"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:text="Soy psicológo"
-        app:layout_constraintBottom_toTopOf="@+id/bRegistrarse"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/custom_button"
+        android:onClick="cancel"
+        android:text="Cancelar"
+        android:textAllCaps="false"
+        android:textColor="@android:color/primary_text_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEditCorreo" />
+        app:layout_constraintTop_toBottomOf="@+id/etEditCorreo"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/etEditCorreo"
@@ -92,4 +85,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="4dp"
+        android:text="Inserte una nueva contraseña\n si desea cambiarla:"
+        app:layout_constraintBottom_toTopOf="@+id/etEditContraseña"
+        app:layout_constraintStart_toStartOf="@+id/etEditContraseña" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -74,6 +74,18 @@ public class OnSessionActivityN extends OnSessionActivity /*AppCompatActivity*/ 
             public void onCommentClickListener(int position) {
                     makeComment(position,OnSessionActivityN.this);
             }
+
+            @Override
+            public void onEditClickListener(int position) {
+                editPost(position, OnSessionActivityN.this);
+            }
+
+            @Override
+            public void onUpClickListener(int position) {
+                toggleUpPost(position, OnSessionActivityN.this);
+            }
+
+
         });
     }
 

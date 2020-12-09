@@ -8,4 +8,7 @@
     <item
         android:id="@+id/itCerrarSesion"
         android:title="@string/cerrarsesion" />
+    <item
+        android:id="@+id/itEditarUsuario"
+        android:title="Editar usuario" />
 </menu>
