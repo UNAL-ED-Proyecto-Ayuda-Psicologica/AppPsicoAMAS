@@ -174,7 +174,9 @@ public class SimplyLinkedList<T> extends List<T> {
 
     @Override
     public T getK(int index) {
-        if (index == 0) {
+        if (index < 0){
+            return null;
+        }else if (index == 0) {
             return this.first.value;
         } else if (index >= length) {
             System.out.println("El índice es mayor al tamaño de la lista");
