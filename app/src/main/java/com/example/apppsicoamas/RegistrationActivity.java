@@ -44,14 +44,15 @@ public class RegistrationActivity extends AppCompatActivity {
         String correo = nuevoCorreo.getText().toString();
 
         if(validar(usuario, contraseña)){
+            long inicio = System.nanoTime();
             if(soyPsicologo.isChecked()){
                 DataBase.agregarUsuario(new Psico(nombre, usuario, contraseña,correo));
             }
             else{
                 DataBase.agregarUsuario(new NoPsico(nombre, usuario, contraseña,correo));
             }
-
-            Toast.makeText(RegistrationActivity.this, "Te acabas de registrar!",Toast.LENGTH_LONG).show();
+            long fin = System.nanoTime();
+            Toast.makeText(RegistrationActivity.this, "Te acabas de registrar! "+ ((fin - inicio) * 1.0e-9),Toast.LENGTH_LONG).show();
             Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
             startActivity(intent);
         }
@@ -61,7 +62,7 @@ public class RegistrationActivity extends AppCompatActivity {
         if(usuario.isEmpty() || contraseña.length() < 8){
             Toast.makeText(RegistrationActivity.this, "Ingresa una contraseña más larga",Toast.LENGTH_LONG).show();
             return false;
-        } else if(DataBase.listanombredeusuarios.contains(usuario)){
+        } else if(DataBase.listanombredeusuarios.containsKey(usuario)){
             Toast.makeText(RegistrationActivity.this, "Este nombre de usuario está ocupado, ingresa uno distinto!",Toast.LENGTH_LONG).show();
             return false;
         } else{
