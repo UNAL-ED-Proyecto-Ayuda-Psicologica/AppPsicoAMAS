@@ -5,7 +5,7 @@ public class StringHashMap<V>{
     private SimplyLinkedList<V>[] values;
     private SimplyLinkedList<String>[] keys;
     //private boolean[] usedPositions;
-    private int DEFAULT_SIZE = 101;
+    private int DEFAULT_SIZE = 10000;
     private int capacity ;
     private int size;
 
@@ -14,6 +14,10 @@ public class StringHashMap<V>{
         this.keys = new SimplyLinkedList[size];
         this.values = new SimplyLinkedList[size];
         //this.usedPositions = new boolean[size];
+        for(int i=0;i<size;i++){
+            this.keys[i]=new SimplyLinkedList<>();
+            this.values[i]=new SimplyLinkedList<>();
+        }
     }
 
     public StringHashMap(){
@@ -21,10 +25,14 @@ public class StringHashMap<V>{
         this.keys = new SimplyLinkedList[this.DEFAULT_SIZE];
         this.values = new SimplyLinkedList[this.DEFAULT_SIZE];
         //this.usedPositions = new boolean[this.DEFAULT_SIZE];
+        for(int i=0;i<DEFAULT_SIZE;i++){
+            this.keys[i]=new SimplyLinkedList<>();
+            this.values[i]=new SimplyLinkedList<>();
+        }
     }
 
     private int hash(String key){
-        int index= key.hashCode();
+        int index= hasheito(key);
         return index % this.capacity;
     }
 
@@ -54,5 +62,15 @@ public class StringHashMap<V>{
         int index = hash(key);
         return keys[index].getIndex(key)>-1;
         //return usedPositions[index];
+    }
+
+    private int hasheito(String key){
+        int n=key.length()/5;
+        if(n==0)n=1;
+        int hasheito =0;
+        for(int i=0; i<key.length() && i<5*n;i+=n){
+            hasheito=13*hasheito + key.charAt(i);
+        }
+        return hasheito;
     }
 }

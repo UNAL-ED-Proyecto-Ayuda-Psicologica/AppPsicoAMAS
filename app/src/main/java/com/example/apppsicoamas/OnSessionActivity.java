@@ -132,7 +132,7 @@ public abstract class OnSessionActivity extends AppCompatActivity {
             builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    DataBase.listadeusuarios.remove(getCurrentUser());
+                    DataBase.listadeusuarios.delete(getCurrentUser().getUsuario());
                     DataBase.listanombredeusuarios.remove(getCurrentUser().getUsuario());
                     Toast.makeText(OnSessionActivity.this, "Has eliminado tu cuenta con éxito!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(OnSessionActivity.this, MainActivity.class));

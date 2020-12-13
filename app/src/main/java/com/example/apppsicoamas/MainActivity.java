@@ -36,7 +36,12 @@ public class MainActivity extends AppCompatActivity {
         ingresar = findViewById(R.id.bIngresar);
         bienvenida = findViewById(R.id.tvBienvenida);
         nuevoRegistro = findViewById(R.id.bNuevoRegistro);
-        DataBase.agregarUsuario(new NoPsico("Luz unu","luzalejandra","veramorales", "laveramo@unal.edu.co"));
+        //DataBase.agregarUsuario(new Psico("Luz unu","luzalejandra","veramorales", "laveramo@unal.edu.co"));
+        DataBase.agregarUsuario(new Psico("Concepcion","zzzzz","MSQSDAK123", "cpadillas@unal.edu.co"));
+        //String morado="crisdavid";
+        //int plus=morado.length()/5;
+        //Toast.makeText(MainActivity.this, "hash "+ plus, Toast.LENGTH_LONG).show();
+
 
         InputStream is=this.getResources().openRawResource(R.raw.nopsico);
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -60,8 +65,9 @@ public class MainActivity extends AppCompatActivity {
             while(linea3 != null){
                 String[] parts = linea3.split(";");
                 Psico b = new Psico(parts[0], parts[2], parts[1],null);
-                DataBase.agregarUsuario(b);
+                //DataBase.agregarUsuario(b);
                 linea3=br3.readLine();
+
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -97,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     public int validarUsuario(String usuario, String contraseña) {
         Psico usuarioEntrante = new Psico("nombre génerico", usuario, contraseña,null);
         //boolean exists = DataBase.listadeusuarios.contains(usuarioEntrante);
-        User user = DataBase.listadeusuarios.getElement(usuarioEntrante);
+        User user = DataBase.listadeusuarios.get(usuario);
         if (user!=null /*&& usuarioEntrante.getUsuario().equals(usuario)*/ && user.validarContraseña(contraseña)) {
             if(user instanceof NoPsico){
                 Singleton.setCurrentUserN((NoPsico) user);

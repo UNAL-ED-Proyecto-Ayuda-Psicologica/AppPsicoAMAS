@@ -8,14 +8,17 @@ import DataStructures.*;
 import PsicObj.*;
 
 public class DataBase {
-    public static AVLTree<User> listadeusuarios = new AVLTree<>();
+    //public static AVLTree<User> listadeusuarios = new AVLTree<>();
     public static AVLTree<String> listanombredeusuarios = new AVLTree<>();
     public static Queue<Panic> botonesDePanico = new PriorityQueue<>();
     public static DynamicArray<Publication> posts = new DynamicArray<>();
+
+    public static StringHashMap<User> listadeusuarios = new StringHashMap<>();
     //public static Stack<Publication> auxPosts = new Stack<>();
 
     public static void agregarUsuario(User user){
-        listadeusuarios.insert(user);
+        //listadeusuarios.insert(user);
+        listadeusuarios.put(user.getUsuario(),user);
         listanombredeusuarios.insert(user.getUsuario());
     }
     /*
