@@ -38,6 +38,10 @@ public class StringHashMap<V>{
 
     public void put(String key, V value){
         int index = hash(key);
+        if(keys[index]==null || values[index]==null){
+            this.keys[index]=new SimplyLinkedList<>();
+            this.values[index]= new SimplyLinkedList<>();
+        }
         keys[index].insertFirst(key);
         values[index].insertFirst(value);
         size++;
